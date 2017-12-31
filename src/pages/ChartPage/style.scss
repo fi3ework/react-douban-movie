@@ -1,0 +1,20 @@
+.content{
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 24px;
+  color: #494949;
+  font-weight: bolder;
+  margin: 20px 0 0 0;
+}
+
+.newMovies{
+  flex-basis: 700px;
+}
+
+.aside {
+  max-width: 300px;
+  flex-basis: 300px;
+}

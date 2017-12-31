@@ -1,0 +1,59 @@
+.globalNavItems {
+  background-color: #545652;
+  padding: 5px 0;
+}
+
+.globalNavItems a {
+  color: #d1d1d1;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.movieNav {
+  background-color: #f0f3f5;
+  margin: 0 0 20px 0;
+}
+
+.titleAndSearchWrapper {
+  width: 1040px;
+  margin: 0 auto;
+  color: #2676a8;
+}
+
+.searchBar {
+  width: 300px;
+}
+
+
+.titleAndSearch {
+  display: flex;
+  align-items: center;
+  padding: 15px 0 15px 0;
+}
+
+.globalNavItems a:hover {
+  color: #e1e1e1;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #2a8ccb;
+  margin: 0 20px;
+}
+
+.movieCateNavWrapper {
+  border-top: 1px solid #e3ebec;
+}
+
+.movieCateNav {
+  width: 1040px;
+  margin: 0 auto;
+  padding: 5px 0;
+}
+
+.movieCateNav a {
+  font-size: 13px;
+  color: #2676b0;
+  margin: 0 10px;
+}

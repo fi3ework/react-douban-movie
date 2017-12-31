@@ -1,0 +1,19 @@
+:global(.ant-carousel .slick-dots li button) {
+  background-color: #bbb;
+}
+
+:global(.ant-carousel .slick-dots li.slick-active button) {
+  background-color: #ccc;
+}
+
+:global(.ant-carousel) {
+  width: 750px;
+}
+
+:global(.slick-slider) {
+  padding-bottom: 30px;
+}
+
+.container {
+  display: flex;
+}

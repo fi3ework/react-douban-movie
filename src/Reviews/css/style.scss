@@ -1,0 +1,73 @@
+@import '../../css/constant.scss';
+.reviewWrapper{
+  border-top: 1px solid #eee;
+  margin: 15px 0;
+  padding: 15px 0 0 0;
+}
+
+.reviewInfo{
+  display: flex;
+  align-items: center;
+}
+
+.packWrapper {
+  margin: 15px 0 0 0;
+}
+
+.authorName{
+  color: $linkBlue;
+  margin: 0 5px 0 0;
+}
+
+.createAt{
+  color: $metaGray;
+}
+
+.reviewTitleWrapper{
+  margin: 10px 0;
+}
+
+.reviewTitle {
+  margin: 6px 0;
+  color: $linkBlue;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  margin-right: 5px;
+}
+
+.packWrapper a {
+  background-color: #f0f7f9;
+  border-radius: 3px;
+  padding: 4px;
+  margin: 0 10px 0 0;
+  &:last-of-type{
+    background-color: transparent;
+  }
+}
+
+.packButton {
+  float: right;
+  cursor: pointer;
+  color: #aaaaaa;
+}
+
+.open {
+  color: $linkBlue;
+}
+
+.summaryContent, .mainContent{
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.summaryContent {
+  color: #494949;
+}
+
+.mainContent{
+  color: #111;
+}

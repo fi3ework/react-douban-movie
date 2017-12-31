@@ -1,0 +1,12 @@
+.title {
+  margin: 10px 0;
+  color: #087626;
+}
+
+:global(.top250 [data-role="card"]){
+  width: 70px;
+}
+
+:global(.top250 [data-role="cardImage"]) {
+  height: 98px;
+}

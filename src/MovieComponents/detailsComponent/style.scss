@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  padding: 15px 50px 15px 0;
+  border-top: 1px dashed #dddddd;
+}
+
+.imageWrapper{
+  display: block;
+  width: 100px;
+  flex-shrink: 0;
+  height: 140px;
+  margin: 0 20px 0 0;
+  overflow: hidden;
+}
+
+.imageWrapper img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.title{
+  color: #3576aa;
+  font-size: 14px;
+}
+
+.infos{
+  margin-top: 10px;
+}
+
+:global(.rater .ant-rate-star) {
+  font-size: 12px;
+  margin-right: 2px;
+}
+
+.average{
+  color: #e2952b;
+}

@@ -1,0 +1,15 @@
+.subject {
+  border-top: 1px dashed #dddddd;
+  padding: 5px 0;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.subject a{
+  color: #3576a8;
+}
+
+.subject:last-of-type {
+  border-bottom: 1px dashed #dddddd;
+}

@@ -1,0 +1,159 @@
+$linkColor: #357bb3;
+$queryGray: #686868;
+
+.content {
+  width: 1040px;
+  margin: 20px auto 0 auto;
+  color: #111111;
+}
+
+.title{
+  color: #494949;
+  font-size: 30px;
+  span {
+  color: #888888;
+  }
+}
+
+
+.introducePanel{
+  margin-top: 10px;
+  display: flex;
+}
+
+.sectionTitle {
+  color: #087626;
+  font-size: 15px;
+  margin: 20px 0 15px 0;
+}
+
+/* MainPic */
+.mainPicWrapper{
+  width: 150px;
+  margin: 0 20px 0 0;
+  img{
+    width: 100%;
+  }
+}
+
+/* Info */
+.infoPanel{
+  font-size: 13px;
+  max-width: 333px;
+  margin-right: 20px;
+  line-height: 20px;
+}
+
+.infoQuery{
+  color: $queryGray;
+}
+
+.infoLink{
+  color: $linkColor;
+  &:hover {
+    color: #fff;
+    background-color: $linkColor;
+  }
+}
+
+/* RatePanel */
+.rateWrapper{
+  border-left: 1px solid #eaeaea;
+  padding: 0 0 0 20px;
+}
+
+.rateTitle{
+  color: #a5a5a5;
+}
+
+.starWrapper {
+  display: flex;
+}
+
+.average{
+  font-size: 24px;
+  font-weight: bolder;
+  color: #494949;
+  margin: 0 10px 0 0;
+}
+
+.starNum{
+  color: #a5a5a5;
+  margin: 0 5px 0 0;
+}
+
+.power{
+  height: 10px;
+  display: inline-block;
+  background-color: #fed69a;
+  margin: 0 10px 0 0;
+}
+
+/* Summary */
+
+/* Celebrities */
+.celebrity {
+  display: inline-block;
+  margin-right: 20px;
+  img {
+    width: 120px;
+  }
+}
+
+.name {
+  text-align: center;
+  a {
+    color: $linkColor;
+  }
+  &:hover a {
+    color: #fff;
+    background-color: $linkColor;
+  }
+}
+
+.indentity{
+  text-align: center;
+  color: #9c9c9c;
+}
+
+/* RelatedPic */
+.picNum{
+  font-size: 13px;
+  font-weight: normal;
+  color: $queryGray;
+  a {
+    color: $linkColor;
+  }
+}
+
+.picUl li{
+  display: inline-block;
+  margin-right: 20px;
+  img {
+    height: 100px;
+  }
+}
+
+.photo{
+  object-fit: cover;
+  width: 100px;
+}
+
+/* PopularComments */
+h2 {
+  * {
+      font-size: 13px;
+      font-weight: normal;
+  }
+  a {
+    color: $linkColor;
+  }
+  span {
+    color: $queryGray;
+  }
+}
+
+
+.noRate {
+  color: #999;
+}

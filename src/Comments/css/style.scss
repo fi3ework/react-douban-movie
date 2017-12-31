@@ -1,0 +1,67 @@
+@import '../../css/constant.scss';
+
+.commentsWrapper{
+  margin-top: 10px;
+}
+
+.commentWrapper {
+  color: $contentBlack;
+  display: flex;
+  padding: 15px 0 5px 0;
+  border-top: 1px solid #eeeeee;
+  width: 780px;
+}
+
+.usefulCount {
+  float: right;
+}
+
+.approve {
+  color: $linkBlue;
+}
+
+.authorName{
+  margin-right: 10px;
+  color: $linkBlue;
+}
+
+.commentAvatar {
+  display: inline-block;
+  height: 60px;
+}
+
+.createAt {
+  color: #999;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.commentContent {
+  margin: 5px 0 0 0;
+  font-size: 13px;
+  color: $contentBlack;
+}
+
+.info {
+  width: 100%;
+  margin: 0 0 0 10px;
+}
+
+:global(.ant-rate) {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+:global(.ant-rate .ant-rate-star) {
+  font-size: 12px;
+  margin-right: 2px;
+}
+
+.report {
+  float: right;
+  color: $linkBlue;
+}
