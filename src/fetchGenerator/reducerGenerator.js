@@ -1,19 +1,24 @@
 import actionTypeGenerator from './actionTypeGenerator'
-import { combineReducers } from 'redux'
 
 function reducerGenerator({
   pageName,
   moduleName,
-  initialState = {}
+  initialState = { isLoading: true }
 }) {
   const ACTION_TYPE = actionTypeGenerator(pageName, moduleName)
   let dataReducer = function(state = initialState, action) {
     switch (action.type) {
       case ACTION_TYPE.START: {
-        return state
+        return {
+          ...state,
+          isLoading: action.isLoading,
+        }
       }
       case ACTION_TYPE.SUCCESS: {
-        return action.data
+        return {
+          isLoading: action.isLoading,
+          payload: action.payload
+        }
       }
       case ACTION_TYPE.FAILURE: {
         return state
@@ -23,27 +28,8 @@ function reducerGenerator({
       }
     }
   }
-  let loadingReducer = function (state = true, action) {
-    switch (action.type) {
-      case ACTION_TYPE.START: {
-        return true
-      }
-      case ACTION_TYPE.SUCCESS: {
-        return false
-      }
-      case ACTION_TYPE.FAILURE: {
-        return false
-      }
-      default: {
-        return state
-      }
-    }
-  }
-  return combineReducers({
-    data: dataReducer,
-    isLoading: loadingReducer
-  })
-
+  return dataReducer
 }
+
 
 export default reducerGenerator

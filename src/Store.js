@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { logger } from 'redux-logger'
+import reduxLoading from './utils/redux-loading'
 
 // celebrity
 import {
@@ -48,7 +49,7 @@ const reducer = combineReducers({
   [celebrityPage]: celebrityReducer,
 })
 
-const middlewares = [thunkMiddleware]
+const middlewares = [reduxLoading, thunkMiddleware]
 if (process.env.NODE_ENV !== 'production') {
   middlewares.push(logger)
 }

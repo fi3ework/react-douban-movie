@@ -7,7 +7,7 @@ class CelebrityPage extends Component {
     return (
       <div>
         <Celebrity id={id}
-          paraObject={{
+          params={{
             id: id,
           }}
         />

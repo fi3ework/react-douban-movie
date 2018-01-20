@@ -5,7 +5,6 @@ import style from '../css/main.scss'
 
 export default (props) => {
   let { title, subjectID, reviewsCount } = props
-  console.log(subjectID)
   let ReviewsComponent = dataView()
   return (
     <div>
@@ -14,7 +13,7 @@ export default (props) => {
         (<Link to={`/subject/${subjectID}/reviews?start=0`}>全部{reviewsCount}条</Link>)
       </h2>
       <ReviewsComponent
-        paraObject={{
+        params={{
           id: subjectID,
           start: 0,
           count: 10

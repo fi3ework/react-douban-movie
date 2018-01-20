@@ -28,8 +28,11 @@ class CommentsPage extends Component {
     if (regStart && regStart[1] !== '') {
       start = regStart[1]
     }
+    if (this.props.isLoading || typeof this.props.isLoading === 'undefined') {
+      return { start, pageNumber: -1, pageCount: -1 }
+    }
     let pageNumber = Math.floor(start / this.props.count) + 1
-    let pageCount = Math.ceil(this.props.commentsCount / this.props.count) * 10
+    let pageCount = Math.ceil(this.props.payload.total / this.props.count) * 10
     return { start, pageNumber, pageCount }
   }
 
@@ -37,40 +40,42 @@ class CommentsPage extends Component {
     let id = this.props.match.params.id
     let { start, pageNumber, pageCount } = this.calcPaginatorParas()
     let CommentsComponent = this.commentsComponent
+
     return (
       <div className={style.content}>
         <div>
           <CommentsComponent
-            paraObject={{
+            params={{
               id: id,
               start,
               count: this.props.count
             }}
           />
           {
-            pageCount > 0 ?
-              <Pagination
-                defaultCurrent={pageNumber}
-                total={pageCount}
-                onChange={this.onPaginationChange}
-              />
-              : null
+            this.props.isLoading ? null :
+            <Pagination
+              defaultCurrent={pageNumber}
+              total={pageCount}
+              onChange={this.onPaginationChange}
+            />
           }
         </div>
-        <SideInfo
-          isLoading={this.props.isLoading}
-          data={this.props.subjectInfo}
-        />
+        {
+          this.props.isLoading || typeof this.props.isLoading === 'undefined' ? null :
+          <SideInfo
+            data={this.props.payload.subject}
+          />
+        }
       </div>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
+  let comments = state[commentsModuleName]
   return {
-    commentsCount: state[commentsModuleName].data.total,
-    subjectInfo: state[commentsModuleName].data.subject,
-    isLoading: state[commentsModuleName].isLoading,
+    isLoading: comments.isLoading,
+    payload: comments.payload
   }
 }
 

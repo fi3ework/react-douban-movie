@@ -13,7 +13,7 @@ const listComponentGenerator = ({
       if (this.props.isLoading) {
         return <p className="loadingPlaceHolder">载入中...</p>
       }
-      let { subjects } = this.props.data
+      let { subjects } = this.props.payload
       return (
         <div>
           {/* <div className={style.title}>{title}</div> */}

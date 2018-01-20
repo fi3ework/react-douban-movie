@@ -20,26 +20,27 @@ class MovieSubject extends React.Component {
 
   render() {
     let id = this.props.id
+    console.log(this.props.isLoading)
     if (this.props.isLoading) {
       return (<h2 className="loadingPlaceHolder">MOVIE ID: {id} 载入中...</h2>)
     }
-    let data = this.props.data
+    let payload = this.props.payload
     // h1
-    let { title, original_title, year } = data
+    let { title, original_title, year } = payload
     // Info & Celebrities
-    let { casts, directors, writers, genres, countries, languages, pubdates, durations, aka } = data
+    let { casts, directors, writers, genres, countries, languages, pubdates, durations, aka } = payload
     // MainPic
-    let { images: { large: imgSrc }} = data
+    let { images: { large: imgSrc }} = payload
     // RatePanel
-    let { rating, ratings_count: ratingsCount } = data
+    let { rating, ratings_count: ratingsCount } = payload
     // Summary
-    let { summary } = data
+    let { summary } = payload
     // RelatedPic
-    let { trailers, photos, photos_count } = data
+    let { trailers, photos, photos_count } = payload
     // PopularComments
-    let { comments_count, popular_comments } = data
+    let { comments_count, popular_comments } = payload
     // PopularComments
-    let { reviews_count, popular_reviews } = data
+    let { reviews_count, popular_reviews } = payload
 
     return (
       <div className={containerStyle.content}>

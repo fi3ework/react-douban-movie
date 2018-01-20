@@ -15,7 +15,7 @@ const detailsComponentGenerator = ({
         return (<h2 className="loadingPlaceHolder">载入中...</h2>)
       }
 
-      let subjects = this.props.data.subjects
+      let subjects = this.props.payload.subjects
       return subjects.map((subjectItem) => {
         // 演员信息
         let infos = [...subjectItem.pubdates, ...subjectItem.casts.map(item => item.name)]

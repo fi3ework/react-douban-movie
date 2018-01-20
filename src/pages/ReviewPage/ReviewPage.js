@@ -28,8 +28,11 @@ class ReviewPage extends Component {
     if (regStart && regStart[1] !== '') {
       start = regStart[1]
     }
+    if (this.props.isLoading || typeof this.props.isLoading === 'undefined') {
+      return { start, pageNumber: -1, pageCount: -1 }
+    }
     let pageNumber = Math.floor(start / this.props.count) + 1
-    let pageCount = Math.ceil(this.props.reviewsCount / this.props.count) * 10
+    let pageCount = Math.ceil(this.props.payload.total / this.props.count) * 10
     return { start, pageNumber, pageCount }
   }
 
@@ -37,40 +40,42 @@ class ReviewPage extends Component {
   render() {
     let { start, pageNumber, pageCount } = this.calcPaginatorParas()
     let ReviewsComponent = this.reviewsComponent
+
     return (
       <div className={style.content}>
         <div>
           <ReviewsComponent
-            paraObject={{
+            params={{
               id: this.props.match.params.id,
               start: parseInt(start, 10),
               count: this.props.count
             }}
           />
           {
-            pageCount > 0 ?
-              <Pagination
-                defaultCurrent={pageNumber}
-                total={pageCount}
-                onChange={this.onPaginationChange}
-              />
-              : null
+            this.props.isLoading ? null :
+            <Pagination
+              defaultCurrent={pageNumber}
+              total={pageCount}
+              onChange={this.onPaginationChange}
+            />
           }
         </div>
-        <SideInfo
-          isLoading={this.props.isLoading}
-          data={this.props.subjectInfo}
-        />
+        {
+          this.props.isLoading || typeof this.props.isLoading === 'undefined' ? null :
+          <SideInfo
+            data={this.props.payload.subject}
+          />
+        }
       </div>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
+  let reviews = state[reviewModuleName]
   return {
-    reviewsCount: state[reviewModuleName].data.total,
-    subjectInfo: state[reviewModuleName].data.subject,
-    isLoading: state[reviewModuleName].isLoading,
+    isLoading: reviews.isLoading,
+    payload: reviews.payload
   }
 }
 

@@ -21,7 +21,7 @@ export default (props) => {
         <span>热门</span> / <span>最新</span> / <span>好友</span>
       </div>
       <Container
-        data={para} hasAvatar={false}
+        payload={para} hasAvatar={false}
       />
     </div>
   )

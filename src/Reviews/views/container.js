@@ -16,7 +16,7 @@ class Container extends Component {
     return (
       <div>
         {
-          this.props.data.reviews.map((review, index) => {
+          this.props.payload.reviews.map((review, index) => {
             return (
               <Review
                 data={review}

@@ -27,7 +27,7 @@ const matrixComponentGenerator = ({
         return (<div className="loadingPlaceHolder">加载中...</div>)
       }
 
-      let subjects = this.props.data.subjects
+      let subjects = this.props.payload.subjects
       let items = subjects.map(item => {
         return <ItemView key={item.id} data={item} />
       })

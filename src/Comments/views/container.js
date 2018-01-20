@@ -8,14 +8,14 @@ import style from '../css/style.scss'
 class Container extends Component {
   render() {
     // 如果正在加载中
-    if (!this.props.data.comments) {
+    if (this.props.isLoading) {
       return <h2 className="loadingPlaceHolder">短评正在加载中，请稍后...</h2>
     }
     // 获取到了数据
     return (
       <div className={style.commentsWrapper}>
         {
-          this.props.data.comments.map((itemData, index) => {
+          this.props.payload.comments.map((itemData, index) => {
             return (
               <Comment
                 {...this.props}

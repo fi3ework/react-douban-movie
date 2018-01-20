@@ -10,7 +10,6 @@ import { API_CELEBRITY } from '@/constants'
 
 class Celebrity extends React.Component {
   render() {
-    console.log(this.props)
     if (this.props.isLoading) {
       return <h2 className="loadingPlaceHolder">加载中...</h2>
     }
@@ -22,7 +21,7 @@ class Celebrity extends React.Component {
       photos,
       avatars: { large: avatar }
     }
-    = this.props.data
+    = this.props.payload
     return (
       <div className={style.celebrityWrapper}>
         <h1 className={style.title}>{name}{name_en}</h1>
@@ -31,7 +30,7 @@ class Celebrity extends React.Component {
             <img src={avatar} alt={avatar} className={style.avatar} />
           </div>
           <div>
-            <Info data={this.props.data} />
+            <Info data={this.props.payload} />
           </div>
         </div>
         <div>

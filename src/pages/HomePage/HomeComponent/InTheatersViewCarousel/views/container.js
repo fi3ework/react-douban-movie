@@ -13,6 +13,7 @@ const DataView = viewGenerator(
     pageName,
     moduleName,
     API: API_IN_THEATERS,
+
     view: MovieCarouselGenerator({
       itemView: CustomViewGenerator(MovieCard, {
         hasBuyButton: true
