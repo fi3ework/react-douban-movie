@@ -56,7 +56,6 @@ let container = (props) => {
   if (props.isLoading) {
     return null
   }
-  console.log(props)
   let {
     id,
     title,

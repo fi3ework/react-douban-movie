@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import fetchCreater from '../utils/fetchCreater'
+import fetchCreator from '../utils/fetchCreator'
 import actionTypeGenerator from './actionTypeGenerator'
 import viewDecorator from './viewDecorator'
 
@@ -39,7 +39,7 @@ function generateIndexMoives({ pageName, moduleName, API, view }) {
   }
 
   let fetchAPIdata = (requestObject) => {
-    return fetchCreater(composeCommentsAPI(requestObject),
+    return fetchCreator(composeCommentsAPI(requestObject),
       fetchStart,
       fetchSuccess,
       fetchFailure)
