@@ -9,6 +9,7 @@ const fetchMiddleware = store => next => action => {
     isLoading: true,
   })
 
+  // console.log(action.URL)
   fetch(action.URL, { params: action.fetchParams })
     .then(response => {
       if (response.status !== 200) {

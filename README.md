@@ -24,7 +24,17 @@ react + redux + redux-thunk + react-router + antd + scss
 
 ## 项目运行
 
-`npm install`之后`npm start`即可。
+1. **安装依赖包**
+
+   `npm i`
+
+2. **本地运行react**
+
+   `npm start`
+
+3. 进入`./node-proxy`文件夹，**开启 node API 代理服务**
+
+   ` node index.js `
 
 ## API
 

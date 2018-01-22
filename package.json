@@ -2,7 +2,6 @@
   "name": "react-douban-movie",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://api.douban.com",
   "dependencies": {
     "antd": "^2.13.7",
     "autoprefixer": "7.1.2",
@@ -65,9 +64,11 @@
     "eslint": "^4.4.1",
     "eslint-config-alloy": "^1.3.1",
     "eslint-plugin-react": "^7.5.1",
+    "express": "^4.16.2",
     "lodash-webpack-plugin": "^0.11.4",
     "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "superagent": "^3.8.2"
   },
   "jest": {
     "collectCoverageFrom": [
