@@ -8,6 +8,7 @@ let request = require('superagent')
 
 let app = express()
 let HOST = 'http://api.douban.com/v2'
+app.set('port', (process.env.PORT || 5000))
 
 /**
  * CORS support.
@@ -43,6 +44,6 @@ requestList.forEach(requestItem => {
   })
 })
 
-app.listen(8081, function () {
-  console.log('HTTP Server is running in http://127.0.0.1:8081')
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'))
 })
