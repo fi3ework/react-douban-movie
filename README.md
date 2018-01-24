@@ -1,10 +1,14 @@
 ## 介绍
 
-基于React的PC端豆瓣电影SPA版。
+基于React的PC端豆瓣电影SPA版 📽
+
+会持续更新，喜欢可以star⭐️，也可自行fork修改🛠
+
+水平有限，欢迎指出错误及提出优化建议😆
 
 ![preview](./doc/preview.gif)
 
-目前实现了：
+**目前实现了：**
 
 - [x] 主页
 - [x] 电影页
@@ -17,6 +21,12 @@
 
 
 - [ ] 影人照片页
+
+**TODO:** 
+
+- [ ] 文档补全
+
+
 
 ## 技术栈
 
@@ -38,7 +48,7 @@ react + redux + redux-thunk + react-router + antd + scss
 
 ## API
 
-[api来源](https://github.com/jokermonn/-Api/blob/master/DoubanMovie.md)
+项目中的API来自[这里](https://github.com/jokermonn/-Api/blob/master/DoubanMovie.md)
 
 ## License
 
