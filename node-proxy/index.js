@@ -8,7 +8,7 @@ let request = require('superagent')
 
 let app = express()
 let HOST = 'http://api.douban.com/v2'
-app.set('port', (process.env.PORT || 5000))
+app.set('port', (process.env.PORT || 8081))
 
 /**
  * CORS support.

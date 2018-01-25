@@ -1,10 +1,12 @@
 ## 介绍
 
-基于React的PC端豆瓣电影SPA版 📽
+ 📽 基于React的PC端豆瓣电影SPA版
 
-会持续更新，喜欢可以star⭐️，也可自行fork修改🛠
+ 🛠 会持续更新，喜欢可以star⭐️，也可自行fork修改
 
-水平有限，欢迎指出错误及提出优化建议😆
+😆 水平有限，欢迎指出错误及提出优化建议
+
+**🌈 在线[DEMO](https://thawing-crag-89764.herokuapp.com/)** (heroku在国外，访问速度较慢，另外长时间不连接会处于休眠状态，遇到这种情况刷新页面即可)
 
 ![preview](./doc/preview.gif)
 
@@ -25,6 +27,8 @@
 **TODO:** 
 
 - [ ] 文档补全
+- [ ] heroku页面无法自动捕获url
+- [ ] heroku无法获取comments及reviews的数据(404)
 
 
 
@@ -42,7 +46,7 @@ react + redux + redux-thunk + react-router + antd + scss
 
    `npm start`
 
-3. 进入`./node-proxy`文件夹，**开启 node API 代理服务**
+3. **进入`./node-proxy`文件夹，开启 node API 代理服务**
 
    ` node index.js `
 

@@ -121,7 +121,6 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -149,7 +148,13 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+              plugins: [
+                // ['react-html-attrs'],//添加babel-plugin-react-html-attrs组件的插件配置
+                // 引入样式为 css
+                ['import', { libraryName: 'antd', style: 'css' }]
+                // 改动: 引入样式为 less
+                //  ['import', { libraryName: 'antd', style: true }],
+              ],
               compact: true,
             },
           },
@@ -166,7 +171,56 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
+            test: /(\.css|\.scss)$/,
+            exclude: paths.appNodeModules,
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: require.resolve('style-loader'),
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'),
+                      options: {
+                        modules: true,
+                        localIdentName: "[name]__[local]___[hash:base64:5]",
+                        importLoaders: 1,
+                        minimize: true,
+                        sourceMap: shouldUseSourceMap,
+                      },
+                    },
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: {
+                        // Necessary for external CSS imports to work
+                        // https://github.com/facebookincubator/create-react-app/issues/2677
+                        ident: 'postcss',
+                        plugins: () => [
+                          require('postcss-flexbugs-fixes'),
+                          autoprefixer({
+                            browsers: [
+                              '>1%',
+                              'last 4 versions',
+                              'Firefox ESR',
+                              'not ie < 9', // React doesn't support IE8 anyway
+                            ],
+                            flexbox: 'no-2009',
+                          }),
+                        ],
+                      },
+                    },
+                    {
+                      loader: require.resolve('sass-loader'),
+                    },
+                  ],
+                },
+                extractTextPluginOptions
+              )
+            ),
+            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+          },
+          {
             test: /\.css$/,
+            include: [paths.appNodeModules],
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
