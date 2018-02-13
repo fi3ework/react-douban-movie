@@ -46,6 +46,7 @@ function generateViewWithFetch({
     }
   }, (dispatch, ownProps) => {
     return {
+      // backup if use other API
       fetchData: (fetchAPI, params) => {
         let url = composeRequest(fetchAPI, params)
         dispatch(fetchAPIdata(

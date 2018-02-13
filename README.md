@@ -1,12 +1,12 @@
 ## 介绍
 
- 📽 基于React的PC端豆瓣电影SPA版
+ 🎬 基于 React 的 PC 端豆瓣电影 SPA 版
 
- 🛠 会持续更新，喜欢可以star⭐️，也可自行fork修改
+ 🛠 会保持维护，喜欢可以 star，也可自行 fork 修改
 
 😆 水平有限，欢迎指出错误及提出优化建议
 
-**🌈 在线[DEMO](https://thawing-crag-89764.herokuapp.com/)** (heroku在国外，访问速度较慢，另外长时间不连接会处于休眠状态，遇到这种情况刷新页面即可)
+**🌈 在线 [DEMO](https://thawing-crag-89764.herokuapp.com/)** (heroku 在国外，访问速度较慢，另外长时间不连接会处于休眠状态，遇到这种情况刷新页面即可)
 
 ![preview](./doc/preview.gif)
 
@@ -27,9 +27,8 @@
 **TODO:** 
 
 - [ ] 文档补全
-- [ ] heroku页面无法自动捕获url
-- [ ] heroku无法获取comments及reviews的数据(404)
-
+- [ ] heroku页面无法自动捕获 url
+- [ ] heroku无法获取 comments 及 reviews 的数据 (404)
 
 
 ## 技术栈
@@ -42,17 +41,17 @@ react + redux + redux-thunk + react-router + antd + scss
 
    `npm i`
 
-2. **本地运行react**
+2. **本地运行 react**
 
    `npm start`
 
-3. **进入`./node-proxy`文件夹，开启 node API 代理服务**
+3. **进入 `./node-proxy` 文件夹，开启 node API 代理服务**
 
    ` node index.js `
 
 ## API
 
-项目中的API来自[这里](https://github.com/jokermonn/-Api/blob/master/DoubanMovie.md)
+项目中的 API [来源](https://github.com/jokermonn/-Api/blob/master/DoubanMovie.md)
 
 ## License
 

@@ -4,7 +4,7 @@ import { API_IN_THEATERS } from '@/constants'
 import { pageName, moduleName } from '../constant'
 import MovieCarouselGenerator from '@/MovieComponents/carouselComponent'
 import MovieCard from '@/MovieCard'
-import CustomViewGenerator from '@/utils/CustomViewGenerator'
+import generateComponentWithProps from '@/utils/generateComponentWithProps'
 import { Link } from 'react-router-dom'
 import style from './style.scss'
 
@@ -13,9 +13,8 @@ const DataView = viewGenerator(
     pageName,
     moduleName,
     API: API_IN_THEATERS,
-
     view: MovieCarouselGenerator({
-      itemView: CustomViewGenerator(MovieCard, {
+      itemView: generateComponentWithProps(MovieCard, {
         hasBuyButton: true
       })
     })

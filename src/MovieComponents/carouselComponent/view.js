@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Carousel, Col, Row } from 'antd'
 
 const viewGeneratror = ({
@@ -6,48 +6,42 @@ const viewGeneratror = ({
   itemViewPara,
   cols = 5,
 }) => {
-  class MovieComponents extends Component {
-    render() {
-      let subjects
-      // 如果还没有获得到数据
-      if (this.props.isLoading) {
-        // return (<h2>LOADING MOVIES...</h2>)
-        let defaultSubjects = []
-        for (let i = 0; i < cols; i++) {
-          defaultSubjects.push(null)
-        }
-        subjects = defaultSubjects
-      } else {
-        subjects = this.props.payload.subjects
+  let MovieComponents = (props) => {
+    let subjects
+    // if the data is still loading
+    if (props.isLoading) {
+      // push null to be placeholder
+      let defaultSubjects = []
+      for (let i = 0; i < cols; i++) {
+        defaultSubjects.push(null)
       }
-
-      const carouselItems = []
-      let tempCarouselItem = []
-      subjects.forEach(function (subjectItem, subjectIndex) {
-        const currCard = <ItemView {...itemViewPara} data={subjectItem} />
-        tempCarouselItem.push(
-          <Col span={Math.floor(24 / cols)} key={tempCarouselItem.length}>{currCard}</Col>
-        )
-        if (tempCarouselItem.length === cols) {
-          carouselItems.push(tempCarouselItem)
-          tempCarouselItem = []
-        }
-      })
-
-      return (
-        <Carousel>
-          {
-            carouselItems.map((item, itemIndex) => {
-              return (
-                <div key={itemIndex}>
-                  <Row type="flex" justify="space-between">{item}</Row>
-                </div>
-              )
-            })
-          }
-        </Carousel>
-      )
+      subjects = defaultSubjects
+    } else {
+      subjects = props.payload.subjects
     }
+
+    const carouselItems = []
+
+    let colItems = subjects.map((subject, index) => {
+      const currCard = <ItemView {...itemViewPara} data={subject} />
+      return <Col span={Math.floor(24 / cols)} key={index}>{currCard}</Col>
+    })
+
+    for (let i = 0; i < colItems.length; i += cols) {
+      carouselItems.push(colItems.slice(i, i + cols))
+    }
+
+    let rows = carouselItems.map((item, index) =>
+      <div key={index}>
+        <Row type="flex" justify="space-between">{item}</Row>
+      </div>
+    )
+
+    return (
+      <Carousel>
+        {rows}
+      </Carousel>
+    )
   }
   return MovieComponents
 }

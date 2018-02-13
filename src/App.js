@@ -102,7 +102,7 @@ const NavBar = () => (
 const Footer = () => (
   <div className={footerStyle.footerWrapper}>
     <span>© 2005－2017 douban.com, all rights reserved 北京豆网科技有限公司</span>
-    <span>🎇 2017-2018 made by <a href="https://github.com/fi3ework">fi3ework</a></span>
+    <span>🎇 2017-2018 Made By <a href="https://github.com/fi3ework">fi3ework</a></span>
   </div>
 )
 
@@ -113,12 +113,12 @@ const App = () => {
       <NavBar />
       <main className={baseStyle.main}>
         <Switch>
-          <Route path={`/${host}subject`} component={SubjectRoute} />
-          <Route path={`/${host}celebrity`} component={CelebrityRoute} />
-          <Route path={`/${host}chart`} component={ChartRoute} />
-          <Route path={`/${host}cinema`} component={CinemaRoute} />
-          <Route path={`/${host}`} component={HomeRoute} />
-          <Route path="/*" component={NotFoundPage} />
+          <Route path={`/${host}subject`} render={SubjectRoute} />
+          <Route path={`/${host}celebrity`} render={CelebrityRoute} />
+          <Route path={`/${host}chart`} render={ChartRoute} />
+          <Route path={`/${host}cinema`} render={CinemaRoute} />
+          <Route path={`/${host}`} render={HomeRoute} />
+          <Route path="/*" render={NotFoundPage} />
         </Switch>
       </main>
       <Footer />

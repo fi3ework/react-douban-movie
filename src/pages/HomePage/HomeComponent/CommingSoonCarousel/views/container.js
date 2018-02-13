@@ -3,7 +3,7 @@ import { API_COMING_SOON } from '@/constants'
 import { pageName, moduleName } from '../constant'
 import MovieCarouselGenerator from '@/MovieComponents/carouselComponent'
 import React from 'react'
-import CustomViewGenerator from '@/utils/CustomViewGenerator'
+import generateComponentWithProps from '@/utils/generateComponentWithProps'
 import MovieCard from '@/MovieCard'
 
 const DataView = viewGenerator(
@@ -12,7 +12,7 @@ const DataView = viewGenerator(
     moduleName,
     API: API_COMING_SOON,
     view: MovieCarouselGenerator({
-      itemView: CustomViewGenerator(MovieCard, {})
+      itemView: generateComponentWithProps(MovieCard, {})
     })
   }
 )

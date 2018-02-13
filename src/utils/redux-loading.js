@@ -1,5 +1,6 @@
 const fetchMiddleware = store => next => action => {
-  if (!action.URL || !Array.isArray(action.types)) {
+
+  if (action.type !== 'REDUX_LOADING') {
     return next(action)
   }
   const [LOADING, SUCCESS, ERROR] = action.types

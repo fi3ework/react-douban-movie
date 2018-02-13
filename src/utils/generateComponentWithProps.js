@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-const CustomViewGenerator = (WrappedComponent, viewParas) => (
+const generateComponentWithProps = (WrappedComponent, viewParas) => (
   class ViewDecorator extends Component {
     render() {
       return (
@@ -9,4 +9,5 @@ const CustomViewGenerator = (WrappedComponent, viewParas) => (
   }
 )
 
-export default CustomViewGenerator
+
+export default generateComponentWithProps

@@ -3,7 +3,7 @@ import { viewGenerator } from '@/fetchGenerator'
 import { API_IN_THEATERS } from '@/constants'
 import { pageName, moduleName } from '../constant'
 import matrixComponentGenerator from '@/MovieComponents/matrixComponent'
-import CustomViewGenerator from '@/utils/CustomViewGenerator'
+import generateComponentWithProps from '@/utils/generateComponentWithProps'
 import MovieCard from '@/MovieCard'
 
 const MatrixComponent = viewGenerator(
@@ -12,7 +12,7 @@ const MatrixComponent = viewGenerator(
     moduleName,
     API: API_IN_THEATERS,
     view: matrixComponentGenerator({
-      itemView: CustomViewGenerator(MovieCard, {
+      itemView: generateComponentWithProps(MovieCard, {
         hasStar: true,
         hasBuyButton: true
       }),

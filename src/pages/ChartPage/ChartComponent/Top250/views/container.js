@@ -5,7 +5,7 @@ import matrixComponentGenerator from '@/MovieComponents/matrixComponent'
 import React from 'react'
 import style from './style.scss'
 import MovieCard from '@/MovieCard'
-import CustomViewGenerator from '@/utils/CustomViewGenerator'
+import generateComponentWithProps from '@/utils/generateComponentWithProps'
 
 
 const DataView = viewGenerator(
@@ -14,7 +14,7 @@ const DataView = viewGenerator(
     moduleName,
     API: API_TOP_250,
     view: matrixComponentGenerator({
-      itemView: CustomViewGenerator(MovieCard, {
+      itemView: generateComponentWithProps(MovieCard, {
         hasStar: false,
       }),
       cols: 4

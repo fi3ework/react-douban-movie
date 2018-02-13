@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import style from './style.scss'
 
-const matrixArranger = (items, cols) => {
+const matrixMaker = (items, cols) => {
   let colArr = []
   for (let i = 0; i < items.length; i += cols) {
     let tempArr = items.slice(i, i + cols)
@@ -11,7 +11,7 @@ const matrixArranger = (items, cols) => {
       )
     }))
   }
-  // 在外面包一层Row
+  // wrap a col
   return colArr.map((row, index) => {
     return <div className={style.row} key={index}>{row}</div>
   })
@@ -21,19 +21,17 @@ const matrixComponentGenerator = ({
   itemView: ItemView,
   cols = 5
 }) => {
-  class MovieComponents extends Component {
-    render() {
-      if (this.props.isLoading) {
-        return (<div className="loadingPlaceHolder">加载中...</div>)
-      }
-
-      let subjects = this.props.payload.subjects
-      let items = subjects.map(item => {
-        return <ItemView key={item.id} data={item} />
-      })
-
-      return matrixArranger(items, cols)
+  let MovieComponents = (props) => {
+    if (props.isLoading) {
+      return (<div className="loadingPlaceHolder">加载中...</div>)
     }
+
+    let subjects = props.payload.subjects
+    let items = subjects.map(item => {
+      return <ItemView key={item.id} data={item} />
+    })
+
+    return matrixMaker(items, cols)
   }
   return MovieComponents
 }
