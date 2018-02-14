@@ -62,7 +62,8 @@ const DataView = viewGenerator(
     pageName,
     moduleName,
     API: API_CELEBRITY,
-    view: Celebrity
+    view: Celebrity,
+    doesCache: true
   }
 )
 

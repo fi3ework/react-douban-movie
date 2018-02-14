@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { logger } from 'redux-logger'
 import reduxLoading from './utils/redux-loading'
+import { cacheMiddleware } from './utils/redux-cache'
 
 // celebrity
 import {
@@ -49,7 +50,7 @@ const reducer = combineReducers({
   [celebrityPage]: celebrityReducer,
 })
 
-const middlewares = [reduxLoading, thunkMiddleware]
+const middlewares = [thunkMiddleware, cacheMiddleware]
 if (process.env.NODE_ENV !== 'production') {
   middlewares.push(logger)
 }
@@ -58,12 +59,4 @@ const storeEnhancers = compose(
   applyMiddleware(...middlewares)
 )
 
-export default createStore(reducer, {
-  [homePage]: {},
-  [cinemaPage]: {},
-  [chartPage]: {},
-  [subjectPage]: {},
-  [reviewsModule]: {},
-  [commentsModule]: {},
-  [celebrityPage]: {},
-}, storeEnhancers)
+export default createStore(reducer, storeEnhancers)

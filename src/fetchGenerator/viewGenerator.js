@@ -7,14 +7,16 @@ function generateViewWithFetch({
   moduleName,
   API,
   fetchParams,
-  view
+  view,
+  doesCache = false
 }) {
-  let fetchAPIdata = (URL, URLparams) => {
+  let fetchAPIdata = (URL, outerFetchParams) => {
     return actionCreator({
       pageName,
       moduleName,
       URL,
-      URLparams
+      outerFetchParams,
+      doesCache
     })
   }
 

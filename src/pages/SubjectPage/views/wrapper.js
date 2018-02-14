@@ -20,7 +20,6 @@ class MovieSubject extends React.Component {
 
   render() {
     let id = this.props.id
-    console.log(this.props.isLoading)
     if (this.props.isLoading) {
       return (<h2 className="loadingPlaceHolder">MOVIE ID: {id} 载入中...</h2>)
     }
@@ -126,7 +125,8 @@ const dataView = () => (
       pageName: pageName,
       moduleName: moduleName,
       API: API_MOVIE_SUBJECT,
-      view: MovieSubject
+      view: MovieSubject,
+      doesCache: true
     }
   )
 )

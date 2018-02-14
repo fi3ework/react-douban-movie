@@ -1,16 +1,22 @@
-const fetchMiddleware = store => next => action => {
+import { isCached } from '../utils/redux-cache'
 
+const fetchMiddleware = store => next => action => {
   if (action.type !== 'REDUX_LOADING') {
     return next(action)
   }
-  const [LOADING, SUCCESS, ERROR] = action.types
+  const [START, SUCCESS, ERROR] = action.types
 
   next({
-    type: LOADING,
+    type: START,
     isLoading: true,
+    cacheID: action.URL
   })
 
-  // console.log(action.URL)
+  let cacheState = isCached(action.URL)
+  if (cacheState) {
+    return
+  }
+
   fetch(action.URL, { params: action.fetchParams })
     .then(response => {
       if (response.status !== 200) {
@@ -20,7 +26,8 @@ const fetchMiddleware = store => next => action => {
         next({
           type: SUCCESS,
           isLoading: false,
-          payload: responseData
+          payload: responseData,
+          cacheID: action.URL
         })
       }).catch((error) => {
         throw new Error('Invalid json response: ' + error)

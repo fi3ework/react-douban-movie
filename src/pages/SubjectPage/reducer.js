@@ -6,7 +6,7 @@ let contentReducer = reducerGenerator(
   {
     pageName,
     moduleName,
-    initialState: {}
+    doesCache: true
   }
 )
 
