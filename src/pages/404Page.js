@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 
 class NotFoundPage extends Component {
   render() {
+    console.log('fucking 404')
     return (
       <div>
-        <h3>[404]</h3>
+        <h2>[404]</h2>
         {this.props.children}
       </div>
     )

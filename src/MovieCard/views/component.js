@@ -78,7 +78,7 @@ const MoiveCard = (props) => {
   }
 
   return (
-    <Link to={`/subject/${id}`}>
+    <Link to={id > 0 ? `/subject/${id}` : ''}>
       <div
         className={classNames({
           [style.loadingCard]: id < 0,

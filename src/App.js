@@ -40,7 +40,7 @@ const SubjectRoute = ({ match }) => {
 }
 
 const CelebrityRoute = ({ match }) => {
-  console.log('CelebrityRoute')
+  console.log('Celebrity route')
   console.log(match)
   return (
     <Switch>
@@ -50,7 +50,7 @@ const CelebrityRoute = ({ match }) => {
 }
 
 const ChartRoute = ({ match }) => {
-  console.log('ChartRoute')
+  console.log('Chart route')
   console.log(match)
   return (
     <Switch>
@@ -60,7 +60,7 @@ const ChartRoute = ({ match }) => {
 }
 
 const CinemaRoute = ({ match }) => {
-  console.log('Cinema')
+  console.log('Cinema route')
   console.log(match)
   return (
     <Switch>
@@ -69,17 +69,10 @@ const CinemaRoute = ({ match }) => {
   )
 }
 
-let Xxx = () => {
-  return <div>asdfasdf</div>
-}
-
-const SearchRoute = ({ match }) => {
-  console.log('Search')
-  console.log(match)
+const SearchRoute = ({ match, location }) => {
+  console.log('Search route')
   return (
-    <Switch>
-      <Route path={`search?q=:q`} render={Xxx} />
-    </Switch>
+    <SearchPage query={location.search.substring(3)} />
   )
 }
 
@@ -103,9 +96,7 @@ const NavBar = withRouter((props) => {
               className={navStyle.searchBar}
               onSearch={
                 (value) => {
-                  console.log(props.history.location)
                   props.history.location.pathname = `/`
-                  console.log(props.history.location)
                   props.history.push(`search?q=${value}`)
                 }
               }
@@ -141,6 +132,7 @@ const App = () => {
           <Route path={`/${host}celebrity`} render={CelebrityRoute} />
           <Route path={`/${host}chart`} render={ChartRoute} />
           <Route path={`/${host}cinema`} render={CinemaRoute} />
+          {/* <Route path={`/${host}search?q=:q`} render={SearchRoute} /> */}
           <Route path={`/${host}search`} render={SearchRoute} />
           <Route path={`/${host}`} render={HomeRoute} />
           <Route path="/*" render={NotFoundPage} />

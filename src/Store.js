@@ -39,6 +39,11 @@ import {
   moduleName as reviewsModule,
   reducer as reviewsReducer
 } from './Reviews'
+// search
+import {
+  pageName as searchPage,
+  reducer as searchReducer
+} from './pages/SearchPage'
 
 const reducer = combineReducers({
   [homePage]: homeReducer,
@@ -48,6 +53,7 @@ const reducer = combineReducers({
   [reviewsModule]: reviewsReducer,
   [commentsModule]: commentsReducer,
   [celebrityPage]: celebrityReducer,
+  [searchPage]: searchReducer,
 })
 
 const middlewares = [thunkMiddleware, cacheMiddleware]

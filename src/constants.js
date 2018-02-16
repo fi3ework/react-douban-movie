@@ -20,3 +20,5 @@ export const API_MOVIE_REVIEWS = `${HOST}/movie/subject/:id/reviews?apikey=0b2bd
 export const API_MOVIE_COMMENTS = `${HOST}/movie/subject/:id/comments?apikey=0b2bdeda43b5688921839c8ecb20399b`
 // 影人页
 export const API_CELEBRITY = `${HOST}/movie/celebrity/:id?apikey=0b2bdeda43b5688921839c8ecb20399b`
+// 搜索页
+export const API_SEARCH = `${HOST}/movie/search?q=:query&apikey=0b2bdeda43b5688921839c8ecb20399b`
