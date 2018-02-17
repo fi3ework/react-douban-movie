@@ -1,62 +1,60 @@
 import React, { Component } from 'react'
-import { Pagination } from 'antd'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { view as dataView, moduleName as reviewModuleName } from '@/Reviews'
+import { view as dataView, moduleName as reviewsModuleName } from '@/Reviews'
 import SideInfo from '@/SideSubjectInfo'
 import style from './style.scss'
+import DoubanPagination from '@/DoubanPagination'
 
-class ReviewPage extends Component {
-  static defaultProps = {
-    count: 20
-  }
 
+
+class ReivewsPage extends Component {
   constructor(props) {
     super(props)
     this.reviewsComponent = dataView()
-  }
-
-  onPaginationChange = (page) => {
-    let count = this.props.count
-    let targetLocation = `${this.props.location.pathname}?start=${(page - 1) * count}&count=${count}`
-    this.props.history.push(targetLocation)
-  }
-
-  calcPaginatorParas = () => {
     let start = 0
-    let regStart = /start=(\d*)/.exec(this.props.location.search)
-    if (regStart && regStart[1] !== '') {
-      start = regStart[1]
+    let count = 20
+    let startReg = /start=(\d*)/.exec(this.props.location.search)
+    if (startReg && startReg[1] !== '') {
+      start = startReg[1]
     }
-    if (this.props.isLoading || typeof this.props.isLoading === 'undefined') {
-      return { start, pageNumber: -1, pageCount: -1 }
+
+    let countReg = /start=(\d*)/.exec(this.props.location.search)
+    if (countReg && countReg[1] !== '') {
+      count = countReg[1]
     }
-    let pageNumber = Math.floor(start / this.props.count) + 1
-    let pageCount = Math.ceil(this.props.payload.total / this.props.count) * 10
-    return { start, pageNumber, pageCount }
+
+    this.state = {
+      id: this.props.match.params.id,
+      start,
+      count
+    }
   }
 
+  onQueryChange = (start) => {
+    this.setState({
+      start
+    })
+  }
 
   render() {
-    let { start, pageNumber, pageCount } = this.calcPaginatorParas()
+    let id = this.props.match.params.id
     let ReviewsComponent = this.reviewsComponent
-
     return (
       <div className={style.content}>
         <div>
           <ReviewsComponent
             params={{
-              id: this.props.match.params.id,
-              start: parseInt(start, 10),
-              count: this.props.count
+              id: id,
+              start: this.state.start,
+              count: this.state.count
             }}
           />
           {
-            this.props.isLoading ? null :
-            <Pagination
-              defaultCurrent={pageNumber}
-              total={pageCount}
-              onChange={this.onPaginationChange}
+            this.props.isLoading || typeof this.props.isLoading === 'undefined' ? null :
+            <DoubanPagination
+              onChange={this.onQueryChange}
+              total={this.props.payload.total}
             />
           }
         </div>
@@ -72,11 +70,11 @@ class ReviewPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let reviews = state[reviewModuleName]
+  let reviews = state[reviewsModuleName]
   return {
     isLoading: reviews.isLoading,
     payload: reviews.payload
   }
 }
 
-export default withRouter(connect(mapStateToProps, null)(ReviewPage))
+export default withRouter(connect(mapStateToProps, null)(ReivewsPage))

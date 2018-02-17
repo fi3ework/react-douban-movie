@@ -10,7 +10,7 @@ export default (props) => {
     <div>
       <h2 className={style.sectionTitle}>
         {title}的影评 · · · · · ·
-        (<Link to={`/subject/${subjectID}/reviews?start=0`}>全部{reviewsCount}条</Link>)
+        (<Link to={`/subject/${subjectID}/reviews`}>全部{reviewsCount}条</Link>)
       </h2>
       <ReviewsComponent
         params={{
@@ -19,7 +19,7 @@ export default (props) => {
           count: 10
         }}
       />
-      <Link to={`/subject/${subjectID}/reviews?start=0`}>{['> ', `更多影评${reviewsCount}篇`]}</Link>
+      <Link to={`/subject/${subjectID}/reviews`}>{['> ', `更多影评${reviewsCount}篇`]}</Link>
     </div>
   )
 }

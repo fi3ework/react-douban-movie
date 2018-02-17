@@ -5,7 +5,7 @@ import { API_SEARCH } from '@/constants'
 import detailsComponentGenerator from '@/MovieComponents/detailsComponent'
 import style from './style.scss'
 
-const DataView = viewGenerator(
+const SearchDataView = viewGenerator(
   {
     pageName,
     moduleName,
@@ -19,4 +19,4 @@ const DataView = viewGenerator(
 )
 
 
-export default DataView
+export default SearchDataView
