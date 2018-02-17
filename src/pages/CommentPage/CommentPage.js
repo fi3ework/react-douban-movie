@@ -6,8 +6,6 @@ import SideInfo from '@/SideSubjectInfo'
 import style from './style.scss'
 import DoubanPagination from '@/DoubanPagination'
 
-
-
 class CommentsPage extends Component {
   constructor(props) {
     super(props)

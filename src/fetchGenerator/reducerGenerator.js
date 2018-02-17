@@ -3,7 +3,6 @@ import actionTypeGenerator from './actionTypeGenerator'
 function reducerGenerator({
   pageName,
   moduleName,
-  doesCache = false,
   initialState = { isLoading: true }
 })
 {

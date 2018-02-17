@@ -5,8 +5,7 @@ import { combineReducers } from 'redux'
 let contentReducer = reducerGenerator(
   {
     pageName,
-    moduleName,
-    doesCache: true
+    moduleName
   }
 )
 

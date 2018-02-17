@@ -13,6 +13,7 @@ const cacheMiddleware = store => next => action => {
 }
 
 const getCache = (cacheKey) => {
+  console.log(caches)
   return caches[cacheKey]
 }
 

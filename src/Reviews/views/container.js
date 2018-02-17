@@ -37,7 +37,7 @@ const dataView = () => (
       pageName: pageName,
       moduleName: moduleName,
       API: API_MOVIE_REVIEWS,
-      view: Container
+      view: Container,
     }
   )
 )
