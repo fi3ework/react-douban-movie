@@ -1,4 +1,4 @@
-@import '../../css/constant.scss';
+@import '../../../css/constant.scss';
 // card
 .card {
   width: 120px;
@@ -8,7 +8,7 @@
   transition: all 0.2s ease-in-out;
   &:hover {
   transform: translateY(-1px);
-    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -17,10 +17,10 @@
 }
 
 .title {
-  margin: 5px 5px 0 5px;
+  margin: 7px auto 0 auto;
+  text-align: center;
   font-size: 14px;
   color: #222;
-  text-align: center;
 }
 
 // image
@@ -69,7 +69,7 @@
 .noRate {
   line-height: 30px;
   text-align: center;
-  color: #111;
+  color: #888;
 }
 
 .year {
@@ -79,13 +79,6 @@
 
 // button
 .buyButtonWrapper {
-  margin: 2px auto 7px auto;
+  margin: 4px auto 10px auto;
   text-align: center;
-  button {
-    padding: 3px 15px 3px 15px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    background-color: #eee;
-    color: #555;
-  }
 }

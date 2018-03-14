@@ -21,9 +21,12 @@
 }
 
 .searchBar {
-  width: 300px;
+  width: 400px;
+  input{
+    border: 1px solid #ddd;
+    border-width: 0 2px 2px 0;
+  }
 }
-
 
 .titleAndSearch {
   display: flex;
@@ -49,11 +52,11 @@
 .movieCateNav {
   width: 1040px;
   margin: 0 auto;
-  padding: 5px 0;
+  padding: 10px 0;
 }
 
 .movieCateNav a {
-  font-size: 13px;
+  font-size: 14px;
   color: #2676b0;
   margin: 0 10px;
 }

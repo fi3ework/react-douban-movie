@@ -1,10 +1,10 @@
 import React from 'react'
-import { Rate } from 'antd'
+import { Rate, Button } from 'antd'
 import { Link } from 'react-router-dom'
 import truncate from 'lodash/truncate'
 import classNames from 'classnames'
+import loadingImg from '../assets/loading.svg'
 import style from './style.scss'
-import loadingImg from '../assets/barLoading.svg'
 
 // 已上映的信息
 const pubbedInfo = (props) => {
@@ -54,40 +54,59 @@ const pubbedInfo = (props) => {
 }
 
 // 还未上映的信息
-const notPubInfo = (props) => {
+const notPubedInfo = (props) => {
   return <div>{props.mainlandPubdate}上映</div>
 }
+
+// 购票按钮
+const BuyButton = (props) =>
+  <div
+    className={style.buyButtonWrapper}
+    onClick={(e) => {
+      e.preventDefault()
+      window.open(`https://maoyan.com/query?kw=${props.title}`)
+    }}
+  >
+    <Button type="primary">选座购票</Button>
+  </div>
+
 
 const MoiveCard = (props) => {
   let id,
     title,
     imgSrc,
-    isLater
-  if (!props.data || !Object.keys(props.data).length) {
+    isPubed,
+    isLoading
+  // 如果还没传入数据
+  if (!props.data) {
     id = -1
     title = ''
     imgSrc = loadingImg
-    isLater = false
+    isPubed = false
+    isLoading = true
   } else {
     ({
       id,
       title,
       images: { large: imgSrc },
-      isLater,
+      isPubed,
     } = props.data)
+    isLoading = false
   }
 
   return (
-    <Link to={id > 0 ? `/subject/${id}` : ''}>
+    <Link to={!isLoading ? `/subject/${id}` : ''}>
       <div
-        className={classNames({
-          [style.loadingCard]: id < 0,
-          [style.card]: true
-        })} data-role="card">
+        className={
+          classNames({
+            [style.loadingCard]: isLoading,
+            [style.card]: true
+          })}
+        data-role="card">
         <div className={style.customImage} data-role="cardImage">
           <img alt={title} src={imgSrc}
             className={classNames({
-              [style.loadingImg]: id < 0
+              [style.loadingImg]: isLoading
             })}
           />
         </div>
@@ -96,15 +115,13 @@ const MoiveCard = (props) => {
           <p className={style.title}>{truncate(title, { 'length': 7 })}</p>
           {
             // 暂未上映和已经上映
-            isLater ? notPubInfo(props) : pubbedInfo(props)
+            isPubed ? notPubedInfo(props) : pubbedInfo(props)
           }
         </div>
         {
           // 购票按钮
-          id > 0 && props.hasBuyButton ?
-            <div className={style.buyButtonWrapper}>
-              <button data-role="buyButton">选座购票</button>
-            </div> : null
+          !isLoading && props.hasBuyButton ?
+            <BuyButton title={title} /> : null
         }
       </div>
     </Link>

@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { view as dataView, moduleName as reviewsModuleName } from '@/Reviews'
-import SideInfo from '@/SideSubjectInfo'
+import SideInfo from '@/Components/SideSubjectInfo'
 import style from './style.scss'
-import DoubanPagination from '@/DoubanPagination'
+import DoubanPagination from '@/Components/DoubanPagination'
 
 class ReivewsPage extends Component {
   constructor(props) {

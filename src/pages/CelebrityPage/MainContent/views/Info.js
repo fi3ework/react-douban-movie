@@ -1,6 +1,6 @@
 import React from 'react'
 import style from '../css/main.scss'
-import InfoQuery from '@/InfoQuery'
+import InfoQuery from '@/Components/InfoQuery'
 
 
 export default (props) => {

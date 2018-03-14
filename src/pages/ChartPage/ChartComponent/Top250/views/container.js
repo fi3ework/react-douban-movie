@@ -1,10 +1,10 @@
 import { viewGenerator } from '@/fetchGenerator'
 import { API_TOP_250 } from '@/constants'
 import { pageName, moduleName } from '../constant'
-import matrixComponentGenerator from '@/MovieComponents/matrixComponent'
+import matrixComponentGenerator from '@/Components/matrixComponent'
 import React from 'react'
 import style from './style.scss'
-import MovieCard from '@/MovieCard'
+import MovieCard from '@/Components/MovieCard'
 import generateComponentWithProps from '@/utils/generateComponentWithProps'
 
 

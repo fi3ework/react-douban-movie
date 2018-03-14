@@ -2,9 +2,9 @@ import React from 'react'
 import { viewGenerator } from '@/fetchGenerator'
 import { API_IN_THEATERS } from '@/constants'
 import { pageName, moduleName } from '../constant'
-import matrixComponentGenerator from '@/MovieComponents/matrixComponent'
+import matrixComponentGenerator from '@/Components/matrixComponent'
 import generateComponentWithProps from '@/utils/generateComponentWithProps'
-import MovieCard from '@/MovieCard'
+import MovieCard from '@/Components/MovieCard'
 
 const MatrixComponent = viewGenerator(
   {

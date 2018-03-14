@@ -1,5 +1,5 @@
 import React from 'react'
-import MovieCard from '@/MovieCard'
+import MovieCard from '@/Components/MovieCard'
 import style from '../css/main.scss'
 
 export default (props) => {

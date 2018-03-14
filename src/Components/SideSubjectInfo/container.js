@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './style.scss'
 import { Link } from 'react-router-dom'
-import InfoQuery from '@/InfoQuery'
+import InfoQuery from '@/Components/InfoQuery'
 
 // const Attr = (props) => {
 //   let slash = props.isLast ? null : <span> / </span>

@@ -1,10 +1,10 @@
 import { viewGenerator } from '@/fetchGenerator'
 import { API_COMING_SOON } from '@/constants'
 import { pageName, moduleName } from '../constant'
-import MovieCarouselGenerator from '@/MovieComponents/carouselComponent'
+import MovieCarouselGenerator from '@/Components/carouselComponent'
 import React from 'react'
 import generateComponentWithProps from '@/utils/generateComponentWithProps'
-import MovieCard from '@/MovieCard'
+import MovieCard from '@/Components/MovieCard'
 
 const DataView = viewGenerator(
   {
