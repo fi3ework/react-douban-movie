@@ -1,7 +1,7 @@
 import { viewGenerator } from '@/fetchGenerator'
 import { API_WEEKLY } from '@/constants'
 import { pageName, moduleName } from '../constant'
-import listComponentGenerator from '@/Components/listComponent'
+import listComponentGenerator from '@/Components/ListComponent'
 import React from 'react'
 import style from './style.scss'
 

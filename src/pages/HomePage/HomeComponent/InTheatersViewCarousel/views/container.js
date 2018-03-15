@@ -2,11 +2,14 @@ import React from 'react'
 import { viewGenerator } from '@/fetchGenerator'
 import { API_IN_THEATERS } from '@/constants'
 import { pageName, moduleName } from '../constant'
-import MovieCarouselGenerator from '@/Components/carouselComponent'
+import MovieCarouselGenerator from '@/Components/CarouselComponent'
 import MovieCard from '@/Components/MovieCard'
-import generateComponentWithProps from '@/utils/generateComponentWithProps'
 import { Link } from 'react-router-dom'
 import style from './style.scss'
+
+const ItemView = (props) => {
+  return <MovieCard hasBuyButton={true} {...props} />
+}
 
 const DataView = viewGenerator(
   {
@@ -14,9 +17,7 @@ const DataView = viewGenerator(
     moduleName,
     API: API_IN_THEATERS,
     view: MovieCarouselGenerator({
-      itemView: generateComponentWithProps(MovieCard, {
-        hasBuyButton: true
-      })
+      itemView: ItemView
     })
   }
 )

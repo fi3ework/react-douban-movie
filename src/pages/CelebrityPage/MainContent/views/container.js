@@ -6,12 +6,12 @@ import style from '../css/main.scss'
 import { pageName, moduleName } from '../constant'
 import { viewGenerator } from '@/fetchGenerator'
 import { API_CELEBRITY } from '@/constants'
-
+import Loading from '@/Components/Loading'
 
 class Celebrity extends React.Component {
   render() {
     if (this.props.isLoading) {
-      return <h2 className="loadingPlaceHolder">加载中...</h2>
+      return <Loading text="celebrity is coming... " />
     }
     let {
       name,

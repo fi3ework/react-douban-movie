@@ -1,14 +1,13 @@
 @import '../../../css/constant.scss';
 // card
 .card {
-  width: 120px;
-  margin: 4px 4px 4px 4px;
+  width: 130px;
+  margin: 4px 0px 4px 0px;
   padding: 0 0 4px 0;
   transform: translateY(0);
   transition: all 0.2s ease-in-out;
   &:hover {
-  transform: translateY(-1px);
-    box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 4px 0 rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -27,7 +26,7 @@
 .customImage {
   margin: 0 auto;
   width: 100%;
-  height: 168px;
+  height: 182px;
   overflow: hidden;
   position: relative;
   img {

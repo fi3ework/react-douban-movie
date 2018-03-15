@@ -1,12 +1,14 @@
 import { viewGenerator } from '@/fetchGenerator'
 import { API_TOP_250 } from '@/constants'
 import { pageName, moduleName } from '../constant'
-import matrixComponentGenerator from '@/Components/matrixComponent'
+import matrixComponentGenerator from '@/Components/MatrixComponent'
 import React from 'react'
 import style from './style.scss'
 import MovieCard from '@/Components/MovieCard'
-import generateComponentWithProps from '@/utils/generateComponentWithProps'
 
+const ItemView = (props) => {
+  return <MovieCard hasStar={false} {...props} />
+}
 
 const DataView = viewGenerator(
   {
@@ -14,9 +16,7 @@ const DataView = viewGenerator(
     moduleName,
     API: API_TOP_250,
     view: matrixComponentGenerator({
-      itemView: generateComponentWithProps(MovieCard, {
-        hasStar: false,
-      }),
+      itemView: ItemView,
       cols: 4
     })
   }

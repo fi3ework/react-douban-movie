@@ -2,7 +2,7 @@ import React from 'react'
 import { API_WEEKLY } from '@/constants'
 import { viewGenerator } from '@/fetchGenerator'
 import { pageName, moduleName } from '../constant'
-import listComponentGenerator from '@/Components/listComponent'
+import listComponentGenerator from '@/Components/ListComponent'
 import { Link } from 'react-router-dom'
 import style from './style.scss'
 

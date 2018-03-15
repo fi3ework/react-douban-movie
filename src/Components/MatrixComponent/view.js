@@ -22,13 +22,19 @@ const matrixComponentGenerator = ({
   cols = 5
 }) => {
   let MovieComponents = (props) => {
+    let subjects = []
     if (props.isLoading) {
-      return (<div className="loadingPlaceHolder">加载中...</div>)
+      // 默认 20 个 placeholder
+      for (let i = 0; i < 20; i++) {
+        subjects.push(null)
+      }
+    } else {
+      subjects = props.payload.subjects
     }
 
-    let subjects = props.payload.subjects
-    let items = subjects.map(item => {
-      return <ItemView key={item.id} data={item} />
+    let items = subjects.map((item, index) => {
+      let key = (item && item.id) || index
+      return <ItemView key={key} data={item} />
     })
 
     return matrixMaker(items, cols)

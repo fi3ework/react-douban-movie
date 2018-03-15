@@ -1,2 +1,1 @@
-import view from './matrixComponent'
-export default view
+export { default } from './view'

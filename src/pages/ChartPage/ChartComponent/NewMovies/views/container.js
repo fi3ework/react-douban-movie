@@ -1,7 +1,7 @@
 import { viewGenerator } from '@/fetchGenerator'
 import { API_NEW_MOVIES } from '@/constants'
 import { pageName, moduleName } from '../constant'
-import detailsComponentGenerator from '@/Components/detailsComponent'
+import detailsComponentGenerator from '@/Components/DetailsComponent'
 import React from 'react'
 import style from './style.scss'
 

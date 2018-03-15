@@ -2,22 +2,22 @@ import React from 'react'
 import { viewGenerator } from '@/fetchGenerator'
 import { API_COMING_SOON } from '@/constants'
 import { pageName, moduleName } from '../constant'
-import matrixComponentGenerator from '@/Components/matrixComponent'
-import generateComponentWithProps from '@/utils/generateComponentWithProps'
+import matrixComponentGenerator from '@/Components/MatrixComponent'
 import MovieCard from '@/Components/MovieCard'
+
+const matrixItemView = matrixComponentGenerator({
+  itemView: (props) => {
+    return <MovieCard hasStar={true} hasBuyButton={true} {...props} />
+  },
+  cols: 5
+})
 
 const MatrixComponent = viewGenerator(
   {
     pageName,
     moduleName,
     API: API_COMING_SOON,
-    view: matrixComponentGenerator({
-      itemView: generateComponentWithProps(MovieCard, {
-        hasStar: true,
-        hasBuyButton: true
-      }),
-      cols: 5
-    })
+    view: matrixItemView
   }
 )
 

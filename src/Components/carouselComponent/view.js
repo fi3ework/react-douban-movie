@@ -1,15 +1,19 @@
 import React from 'react'
 import { Carousel, Col, Row } from 'antd'
-
+import style from './style.scss'
 const viewGeneratror = ({
   itemView: ItemView,
   itemViewPara,
-  cols = 5,
+  cols = 5
 }) => {
   let MovieComponents = (props) => {
     let subjects
-    // if the data is still loading
-    if (props.isLoading) {
+    let isLoading = true
+    if (props.payload && props.payload.subjects) {
+      isLoading = false
+    }
+    // if data is still loading
+    if (isLoading) {
       // push null to be placeholder
       let defaultSubjects = []
       for (let i = 0; i < cols; i++) {
@@ -21,7 +25,6 @@ const viewGeneratror = ({
     }
 
     const carouselItems = []
-
     let colItems = subjects.map((subject, index) => {
       const currCard = <ItemView {...itemViewPara} data={subject} />
       return <Col span={Math.floor(24 / cols)} key={index}>{currCard}</Col>
@@ -33,7 +36,7 @@ const viewGeneratror = ({
 
     let rows = carouselItems.map((item, index) =>
       <div key={index}>
-        <Row type="flex" justify="space-between">{item}</Row>
+        <Row type="flex" justify="space-around">{item}</Row>
       </div>
     )
 

@@ -1,0 +1,13 @@
+.loadingWrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 50px 0;
+}
+
+.loadingText{
+  color: #ccc;
+  margin: 20px 0 0 0;
+  font: italic 16px system-ui, "Gill Sans", Georgia;
+}
