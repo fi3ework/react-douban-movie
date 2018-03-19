@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container } from '@/Comments'
+import { Container } from '@/Components/Comments'
 import style from '../css/main.scss'
 
 export default (props) => {

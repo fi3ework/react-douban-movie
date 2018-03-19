@@ -7,8 +7,8 @@ function generateViewWithFetch({
   moduleName,
   API,
   fetchParams,
-  view,
-  doesCache = false
+  doesCache = false,
+  view
 }) {
   let fetchAPIdata = (URL, outerFetchParams) => {
     return actionCreator({
@@ -39,14 +39,16 @@ function generateViewWithFetch({
     return composedRequest
   }
 
-  let connected = connect((state, ownProps) => {
+  let mapStateToProps = (state, ownProps) => {
     let currState = pageName ? state[pageName][moduleName] : state[moduleName]
     return {
       API: API,
       isLoading: typeof currState.isLoading === 'undefined' ? true : currState.isLoading,
       payload: currState.payload,
     }
-  }, (dispatch, ownProps) => {
+  }
+
+  let mapDispatchToProps = (dispatch, ownProps) => {
     return {
       // backup if use other API
       fetchData: (fetchAPI, params) => {
@@ -60,7 +62,10 @@ function generateViewWithFetch({
           url, fetchParams))
       }
     }
-  })(viewDecorator(view))
+  }
+
+
+  let connected = connect(mapStateToProps, mapDispatchToProps)(viewDecorator(view))
 
   return connected
 }

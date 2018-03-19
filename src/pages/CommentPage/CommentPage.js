@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { view as dataView, moduleName as commentsModuleName } from '@/Comments'
+import { view as dataView, moduleName as commentsModuleName } from '@/Components/Comments'
+import DoubanPagination from '@/Components/DoubanPagination'
 import SideInfo from '@/Components/SideSubjectInfo'
 import style from './style.scss'
-import DoubanPagination from '@/Components/DoubanPagination'
 
 class CommentsPage extends Component {
   constructor(props) {

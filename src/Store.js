@@ -33,12 +33,12 @@ import {
 import {
   moduleName as commentsModule,
   reducer as commentsReducer
-} from './Comments'
+} from './Components/Comments'
 // reviews
 import {
   moduleName as reviewsModule,
   reducer as reviewsReducer
-} from './Reviews'
+} from './Components/Reviews'
 // search
 import {
   pageName as searchPage,

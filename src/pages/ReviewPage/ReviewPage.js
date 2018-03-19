@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { view as dataView, moduleName as reviewsModuleName } from '@/Reviews'
+import { view as dataView, moduleName as reviewsModuleName } from '@/Components/Reviews'
 import SideInfo from '@/Components/SideSubjectInfo'
 import style from './style.scss'
 import DoubanPagination from '@/Components/DoubanPagination'

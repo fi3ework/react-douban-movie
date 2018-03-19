@@ -11,14 +11,12 @@ class MoviePage extends Component {
     let id = this.props.match.params.id
     let MovieSubject = this.movieSubject
     return (
-      <div>
-        <MovieSubject
-          id={id}
-          params={{
-            id: id,
-          }}
-        />
-      </div>
+      <MovieSubject
+        id={id}
+        params={{
+          id: id,
+        }}
+      />
     )
   }
 }

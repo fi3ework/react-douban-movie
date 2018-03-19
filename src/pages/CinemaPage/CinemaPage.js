@@ -6,7 +6,7 @@ class CinemaPage extends Component {
   render() {
     return (
       <div>
-        {/* <NowPlaying start={0} count={100} /> */}
+        <NowPlaying start={0} count={100} />
         <Later start={0} count={10} />
       </div>
     )

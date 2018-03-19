@@ -1,6 +1,5 @@
 import React from 'react'
 import { Carousel, Col, Row } from 'antd'
-import style from './style.scss'
 const viewGeneratror = ({
   itemView: ItemView,
   itemViewPara,

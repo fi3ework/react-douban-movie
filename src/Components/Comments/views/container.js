@@ -1,26 +1,26 @@
 import { viewGenerator } from '@/fetchGenerator'
-import { API_MOVIE_REVIEWS } from '../../constants'
+import { API_MOVIE_COMMENTS } from '@/constants'
 import { pageName, moduleName } from '../constant'
 import React, { Component } from 'react'
-import Review from './component'
+import Comment from './component'
+import style from '../css/style.scss'
 
 class Container extends Component {
-
   render() {
     // 如果正在加载中
     if (this.props.isLoading) {
-      return <h1 className="loadingPlaceHolder">评论载入中，请稍后...</h1>
+      return <h2 className="loadingPlaceHolder">短评正在加载中，请稍后...</h2>
     }
-
     // 获取到了数据
     return (
-      <div>
+      <div className={style.commentsWrapper}>
         {
-          this.props.payload.reviews.map((review, index) => {
+          this.props.payload.comments.map((itemData, index) => {
             return (
-              <Review
-                data={review}
-                key={review.id}
+              <Comment
+                {...this.props}
+                data={itemData}
+                key={itemData.id}
               />
             )
           })
@@ -36,7 +36,7 @@ const dataView = () => (
     {
       pageName: pageName,
       moduleName: moduleName,
-      API: API_MOVIE_REVIEWS,
+      API: API_MOVIE_COMMENTS,
       view: Container,
     }
   )

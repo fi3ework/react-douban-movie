@@ -24,7 +24,6 @@ const Celebrity = ({ profile, identity }) => {
   )
 }
 
-
 export default (props) => {
   let celebrities = []
   let toShowProps = [

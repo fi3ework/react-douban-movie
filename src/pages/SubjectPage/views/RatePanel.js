@@ -43,7 +43,7 @@ export default (props) => {
               {
                 average === 0 ?
                   <span className={style.noRate}>暂无评价</span> :
-                  <a href="">已有{ratingsCount}人评价</a>
+                  <a className={style.rateNum} href="">已有{ratingsCount}人评价</a>
               }
             </div>
           </div>
