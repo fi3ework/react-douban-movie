@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, Link, withRouter } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { view as HomePage } from './pages/HomePage'
 import { view as MoviePage } from './pages/SubjectPage'
 import { view as ReviewPage } from './pages/ReviewPage'
@@ -9,10 +9,9 @@ import { view as CelebrityPage } from './pages/CelebrityPage'
 import { view as ChartPage } from './pages/ChartPage'
 import { view as CinemaPage } from './pages/CinemaPage'
 import { view as SearchPage } from './pages/SearchPage'
-import { Input } from 'antd'
-import navStyle from './css/navigation.scss'
 import baseStyle from './css/base.scss'
-import footerStyle from './css/footer.scss'
+import Footer from './Components/Footer'
+import NavBar from './Components/NavBar'
 
 const HomeRoute = ({ match }) => {
   console.log('HomeRoute')
@@ -76,51 +75,6 @@ const SearchRoute = ({ match, location }) => {
   )
 }
 
-const NavBar = withRouter((props) => {
-  return (
-    <div>
-      <div className={navStyle.globalNavItems} >
-        <Link to={'/'} >豆瓣</Link>
-        <a>读书</a>
-        <a>读书</a>
-        <a>音乐</a>
-      </div>
-      <div className={navStyle.movieNav}>
-        <div className={navStyle.titleAndSearchWrapper}>
-          <div className={navStyle.titleAndSearch}>
-            <Link className={navStyle.title} to={'/'}>
-              豆瓣电影
-            </Link>
-            <Input.Search
-              placeholder="搜索电影、电视剧、综艺、影人"
-              className={navStyle.searchBar}
-              onSearch={
-                (value) => {
-                  props.history.location.pathname = `/`
-                  props.history.push(`search?q=${value}`)
-                }
-              }
-            />
-          </div>
-        </div>
-        <div className={navStyle.movieCateNavWrapper}>
-          <div className={navStyle.movieCateNav}>
-            <Link to="/cinema">影讯&购票</Link>
-            <Link to="/chart">排行榜</Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-})
-
-const Footer = () => (
-  <div className={footerStyle.footerWrapper}>
-    <span>© 2005－2017 douban.com, all rights reserved 北京豆网科技有限公司</span>
-    <span>🎇 2017-2018 Made By <a href="https://github.com/fi3ework">fi3ework</a></span>
-  </div>
-)
-
 const App = () => {
   let host = ''
   return (
@@ -132,7 +86,6 @@ const App = () => {
           <Route path={`/${host}celebrity`} render={CelebrityRoute} />
           <Route path={`/${host}chart`} render={ChartRoute} />
           <Route path={`/${host}cinema`} render={CinemaRoute} />
-          {/* <Route path={`/${host}search?q=:q`} render={SearchRoute} /> */}
           <Route path={`/${host}search`} render={SearchRoute} />
           <Route path={`/${host}`} render={HomeRoute} />
           <Route path="/*" render={NotFoundPage} />
