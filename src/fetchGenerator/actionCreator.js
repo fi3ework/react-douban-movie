@@ -5,8 +5,8 @@ function actionCreator({
   pageName,
   moduleName,
   URL,
-  params,
-  doesCache
+  params = {},
+  doesCache = false
 }) {
   const ACTION_TYPES = actionTypeGenerator(pageName, moduleName)
   return (dispatch) => {
