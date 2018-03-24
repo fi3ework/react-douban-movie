@@ -9,27 +9,76 @@ import { API_SEARCH } from '@/constants'
 import { pageName } from '@/pages/SearchPage'
 import { moduleName } from '@/pages/SearchPage/content'
 
-const SearchPreview = (props) => {
-  console.log(props)
-  let subjects = props.data.subjects
+const SearchPreviewItem = ({ item }) => {
   return (
-    <div className={style.searchPreviewWrapper}>
-      {subjects.slice(0, 6).map(item => {
-        return (
-          <div className={style.searchPreviewItem} key={item.id}>
-            <img src={item.images.large} className={style.previewImg} />
-            <div className={style.previewInfo}>
-              <div>{item.title}</div>
-              <div>{item.year}</div>
-              <div>{item.original_title}</div>
-            </div>
-          </div>
-        )
-      })}
-    </div>
+    <Link to={`/subject/${item.id}`}>
+      <div className={style.searchPreviewItem} key={item.id}>
+        <img src={item.images.large} className={style.previewImg} />
+        <div className={style.previewInfo}>
+          <div className={style.previewItemTitle}>{item.title}</div>
+          <div className={style.previewItemYear}>{item.year}</div>
+          <div className={style.previewItemOriginalTitle}>{item.original_title}</div>
+        </div>
+      </div>
+    </Link>
   )
 }
 
+class SearchPreview extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isHidden: false,
+      bodyClickHandler: () => {
+        this.setState({
+          isHidden: true
+        })
+      },
+      selfClickHandler: (e) => {
+        e.stopPropagation()
+      }
+    }
+  }
+
+  componentDidMount = () => {
+    document.body.addEventListener('click', this.state.bodyClickHandler)
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    if (this.isAbleToShowPreview()) {
+      this.setState({
+        isHidden: false
+      })
+    }
+  }
+
+  componentWillUnmount = () => {
+    document.body.removeEventListener('click', this.state.bodyClickHandler)
+    // this.previewNode.removeEventListener('click', this.state.selfClickHandler) // TODO: ref and cwu
+  }
+
+  isAbleToShowPreview() {
+    return this.state.isHidden ||
+        this.props.data.isLoading === true ||
+        Object.prototype.toString.call(this.props.data.isLoading) === '[object Undefined]'
+  }
+
+  render() {
+    if (this.isAbleToShowPreview()) {
+      return null
+    }
+    let subjects = this.props.data.payload.subjects
+    return (
+      <div className={style.searchPreviewWrapper} ref={(preview) => { this.previewNode = preview }}>
+        {subjects.slice(0, 6).map(item => {
+          return (
+            <SearchPreviewItem item={item} key={item.id} />
+          )
+        })}
+      </div>
+    )
+  }
+}
 
 class NavBar extends Component {
   searchQuery = (value) => {
@@ -71,10 +120,8 @@ class NavBar extends Component {
                   }
                 />
                 {
-                  this.props.searchPreview.isLoading ||
-                Object.prototype.toString.call(this.props.searchPreview.isLoading) === '[object Undefined]' ?
-                    null :
-                    <SearchPreview data={this.props.searchPreview.payload} />
+
+                  <SearchPreview data={this.props.searchPreview} />
                 }
               </div>
             </div>

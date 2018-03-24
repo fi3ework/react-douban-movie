@@ -20,13 +20,6 @@
   color: #2676a8;
 }
 
-.searchBar {
-  width: 400px;
-  input{
-    border: 1px solid #ddd;
-    border-width: 0 2px 2px 0;
-  }
-}
 
 .titleAndSearch {
   display: flex;
@@ -64,20 +57,34 @@
 // search preview
 .searchBarWrapper{
   position: relative;
+  width: 400px;
+}
+
+.searchBar {
+  input{
+    border: 1px solid #ddd;
+    border-width: 0 2px 2px 0;
+  }
 }
 
 .searchPreviewWrapper{
   position: absolute;
+  width: 100%;
   background-color: #fff;
-  top: 0;
+  top: 28px;
   left: 0;
   z-index: 999;
-  border: 1px solid #aaa;
+  border: 1px solid #ccc;
 }
 
 .searchPreviewItem{
   display: flex;
-  border-bottom: 1px solid #aaa;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  &:hover{
+    background-color: #eee;
+  }
 }
 
 .previewImg{
@@ -86,5 +93,13 @@
 }
 
 .previewInfo {
+  margin-left: 10px;
+}
 
+.previewItemYear{
+  color: #aaa;
+}
+
+.previewItemOriginalTitle{
+  color: #aaa;
 }
