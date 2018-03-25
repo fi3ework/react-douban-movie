@@ -4,11 +4,12 @@ import { view as HomePage } from './pages/HomePage'
 import { view as MoviePage } from './pages/SubjectPage'
 import { view as ReviewPage } from './pages/ReviewPage'
 import { view as CommentPage } from './pages/CommentPage'
-import NotFoundPage from './pages/404Page'
 import { view as CelebrityPage } from './pages/CelebrityPage'
 import { view as ChartPage } from './pages/ChartPage'
 import { view as CinemaPage } from './pages/CinemaPage'
 import { view as SearchPage } from './pages/SearchPage'
+import { view as TagPage } from './pages/TagPage'
+import NotFoundPage from './pages/404Page'
 import baseStyle from './css/base.scss'
 import Footer from './Components/Footer'
 import NavBar from './Components/NavBar'
@@ -75,6 +76,14 @@ const SearchRoute = ({ match, location }) => {
   )
 }
 
+const TagRoute = ({ match, location }) => {
+  console.log('Tag route')
+  console.log(location)
+  return (
+    <TagPage query={location.search.substring(3)} />
+  )
+}
+
 const App = () => {
   let host = ''
   return (
@@ -87,6 +96,7 @@ const App = () => {
           <Route path={`/${host}chart`} render={ChartRoute} />
           <Route path={`/${host}cinema`} render={CinemaRoute} />
           <Route path={`/${host}search`} render={SearchRoute} />
+          <Route path={`/${host}tag`} render={TagRoute} />
           <Route path={`/${host}`} render={HomeRoute} />
           <Route path="/*" render={NotFoundPage} />
         </Switch>

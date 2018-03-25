@@ -22,3 +22,6 @@ export const API_MOVIE_COMMENTS = `${HOST}/movie/subject/:id/comments?apikey=0b2
 export const API_CELEBRITY = `${HOST}/movie/celebrity/:id?apikey=0b2bdeda43b5688921839c8ecb20399b`
 // 搜索页
 export const API_SEARCH = `${HOST}/movie/search?q=:query&apikey=0b2bdeda43b5688921839c8ecb20399b`
+// Tag
+export const API_TAG = `${HOST}/movie/search?tag=:tag&apikey=0b2bdeda43b5688921839c8ecb20399b`
+

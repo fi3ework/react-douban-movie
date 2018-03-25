@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { logger } from 'redux-logger'
-import reduxLoading from './utils/redux-loading'
+// import reduxLoading from './utils/redux-loading'
 import { cacheMiddleware } from './utils/redux-cache'
 
 // celebrity
@@ -44,6 +44,11 @@ import {
   pageName as searchPage,
   reducer as searchReducer
 } from './pages/SearchPage'
+// search
+import {
+  pageName as tagPage,
+  reducer as tagReducer
+} from './pages/TagPage'
 
 const reducer = combineReducers({
   [homePage]: homeReducer,
@@ -54,6 +59,7 @@ const reducer = combineReducers({
   [commentsModule]: commentsReducer,
   [celebrityPage]: celebrityReducer,
   [searchPage]: searchReducer,
+  [tagPage]: tagReducer,
 })
 
 const middlewares = [thunkMiddleware, cacheMiddleware]

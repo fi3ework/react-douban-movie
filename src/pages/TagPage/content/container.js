@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import viewGenerator from '@/fetchGenerator/viewGenerator'
 import { pageName, moduleName } from './constant'
-import { API_SEARCH } from '@/constants'
+import { API_TAG } from '@/constants'
 import detailsComponentGenerator from '@/Components/DetailsComponent'
 import style from './style.scss'
 import DoubanPagination from '@/Components/DoubanPagination'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PresetTags from '../PresetTag'
 
-const SearchDataView = viewGenerator(
+const TagDataView = viewGenerator(
   {
     pageName,
     moduleName,
-    API: API_SEARCH,
+    API: API_TAG,
     view: detailsComponentGenerator({
       hasStar: true,
       hasBuyTicket: false,
@@ -21,11 +22,10 @@ const SearchDataView = viewGenerator(
   }
 )
 
-
-class SearchContent extends Component {
+class TagContent extends Component {
   constructor(props) {
     super(props)
-    this.searchDataView = SearchDataView
+    this.tagDataView = TagDataView
     let start = 0
     let count = 20
     let startReg = /start=(\d*)/.exec(this.props.location.search)
@@ -52,16 +52,15 @@ class SearchContent extends Component {
   }
 
   render() {
-    console.log(this.props)
-    let query = this.props.params.query
-    let SearchView = this.searchDataView
+    let tag = this.props.params.query
+    let TagView = this.tagDataView
     console.log(this.props.payload)
     return (
       <div className={style.content}>
         <div>
-          <SearchView
+          <TagView
             params={{
-              query: query,
+              tag: tag,
               start: this.state.start,
               count: this.state.count
             }}
@@ -80,6 +79,7 @@ class SearchContent extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps)
   let search = state[pageName][moduleName]
   return {
     isLoading: search.isLoading,
@@ -87,4 +87,17 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, null)(SearchContent))
+const DecoratedContent = withRouter(connect(mapStateToProps, null)(TagContent))
+
+const Container = (props) => {
+  console.log(props)
+  return (
+    <React.Fragment>
+      <PresetTags />
+      <DecoratedContent {...props} />
+    </React.Fragment>
+  )
+}
+
+
+export default Container

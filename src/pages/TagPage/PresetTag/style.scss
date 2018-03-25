@@ -1,0 +1,22 @@
+@import '../../../css/constant.scss';
+
+.presestTagWrapper{
+  width: 800px;
+  margin: 10px 0;
+}
+
+.title{
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.tag{
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 5px;
+  line-height: 32px;
+  &:hover {
+    color: $linkBlue;
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import Loading from '../Loading'
 import DetailCard from '../DetailCard'
+import style from './style.scss'
 
 const detailsComponentGenerator = ({
   hasStar = true,
