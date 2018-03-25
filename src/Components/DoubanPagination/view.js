@@ -16,13 +16,24 @@ class DoubanPagination extends Component {
 
   onPaginationChange = (page) => {
     let count = 20
-    let targetLocation = `${this.props.location.pathname}?start=${(page - 1) * count}&count=${count}`
-    this.props.history.push(targetLocation)
+    let location = this.props.location.pathname + this.props.location.search
+    if (/start=\d*/.test(location)) {
+      location = location.replace(/start=(\d*)/, `start=${(page - 1) * count}`)
+    }
+    else
+    {
+      location += `&start=${(page - 1) * count}&count=${count}`
+    }
+
+
+    // let targetLocation = `${this.props.location.pathname}?start=${(page - 1) * count}&count=${count}`
+    this.props.history.push(location)
     this.props.onChange((page - 1) * count)
   }
 
   calcPaginatorParas = (total) => {
     let start = 0
+    console.log(this.props.location)
     let regStart = /start=(\d*)/.exec(this.props.location.search)
     if (regStart && regStart[1] !== '') {
       start = regStart[1]
