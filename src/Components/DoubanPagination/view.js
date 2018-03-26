@@ -14,6 +14,10 @@ class DoubanPagination extends Component {
     }
   }
 
+  backToTop = () => {
+    window.scrollTo(0, 0)
+  }
+
   onPaginationChange = (page) => {
     let count = 20
     let location = this.props.location.pathname + this.props.location.search
@@ -25,10 +29,9 @@ class DoubanPagination extends Component {
       location += `&start=${(page - 1) * count}&count=${count}`
     }
 
-
-    // let targetLocation = `${this.props.location.pathname}?start=${(page - 1) * count}&count=${count}`
     this.props.history.push(location)
     this.props.onChange((page - 1) * count)
+    this.backToTop()
   }
 
   calcPaginatorParas = (total) => {
