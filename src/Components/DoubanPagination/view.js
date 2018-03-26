@@ -20,16 +20,18 @@ class DoubanPagination extends Component {
 
   onPaginationChange = (page) => {
     let count = 20
-    let location = this.props.location.pathname + this.props.location.search
-    if (/start=\d*/.test(location)) {
-      location = location.replace(/start=(\d*)/, `start=${(page - 1) * count}`)
+    let { pathname, search } = this.props.location
+
+    if (/start=\d*/.test(search)) {
+      search = search.replace(/start=(\d*)/, `start=${(page - 1) * count}`)
     }
     else
     {
-      location += `&start=${(page - 1) * count}&count=${count}`
+      search += !search ? '?' : '&'
+      search += `start=${(page - 1) * count}&count=${count}`
     }
 
-    this.props.history.push(location)
+    this.props.history.push(pathname + search)
     this.props.onChange((page - 1) * count)
     this.backToTop()
   }
