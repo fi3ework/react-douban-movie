@@ -130,7 +130,7 @@ class NavBar extends Component {
             <div className={style.movieCateNav}>
               <Link to="/cinema">影讯&购票</Link>
               <Link to="/chart">排行榜</Link>
-              <Link to="/tag">分类</Link>
+              <Link to="/tag?q=电影">分类</Link>
             </div>
           </div>
         </div>

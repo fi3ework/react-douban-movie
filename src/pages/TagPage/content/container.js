@@ -88,12 +88,13 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const DecoratedContent = withRouter(connect(mapStateToProps, null)(TagContent))
+const DecoratedPresetTags = withRouter(PresetTags)
 
 const Container = (props) => {
   console.log(props)
   return (
     <React.Fragment>
-      <PresetTags />
+      <DecoratedPresetTags />
       <DecoratedContent {...props} />
     </React.Fragment>
   )

@@ -1,22 +1,33 @@
 @import '../../../css/constant.scss';
-
-.presestTagWrapper{
+.presestTagWrapper {
   width: 800px;
   margin: 10px 0;
 }
 
-.title{
+.title {
   font-size: 24px;
   font-weight: bold;
   margin: 10px 0;
 }
 
-.tag{
+.tag {
+  color: #333;
   display: inline-block;
-  font-size: 16px;
-  margin: 0 5px;
-  line-height: 32px;
+  font-size: 14px;
+  padding: 0 10px;
+  line-height: 28px;
+  text-decoration: none;
   &:hover {
-    color: $linkBlue;
+    color: $bgBlue;
+  }
+}
+
+.highlight {
+  border-radius: 3px;
+  line-height: 24px;
+  background-color: $bgBlue;
+  color: #fff;
+  &:hover {
+    color: #fff;
   }
 }
