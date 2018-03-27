@@ -5,6 +5,12 @@ export default reducerGenerator(
   {
     pageName,
     moduleName,
-    initialState: {}
+    initialState: {},
+    customReducers: {
+      CLEAR_TAG_DATA: (state, action) => {
+        return {}
+      }
+    }
   }
 )
+

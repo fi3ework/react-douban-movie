@@ -7,7 +7,7 @@ import style from './style.scss'
 import DoubanPagination from '@/Components/DoubanPagination'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import PresetTags from '../PresetTag'
+import { actionCreator } from '@/fetchGenerator'
 
 const TagDataView = viewGenerator(
   {
@@ -21,6 +21,17 @@ const TagDataView = viewGenerator(
     })
   }
 )
+
+const loadMoreAction = () => {
+  let URL = API_TAG
+  let actionToDispatch = actionCreator({ pageName, moduleName, URL })
+}
+
+const LoadMore = () => {
+  return (
+    <div className={style.loadMore} onClick={() => { }}>加载更多</div>
+  )
+}
 
 class TagContent extends Component {
   constructor(props) {
@@ -53,33 +64,24 @@ class TagContent extends Component {
 
   render() {
     let tag = this.props.params.query
-    let TagView = this.tagDataView
+    let MoviesInTag = this.tagDataView
     console.log(this.props.payload)
     return (
       <div className={style.content}>
-        <div>
-          <TagView
-            params={{
-              tag: tag,
-              start: this.state.start,
-              count: this.state.count
-            }}
-          />
-          {
-            this.props.isLoading || typeof this.props.isLoading === 'undefined' ? null :
-            <DoubanPagination
-              onChange={this.onQueryChange}
-              total={this.props.payload.total}
-            />
-          }
-        </div>
+        <MoviesInTag
+          params={{
+            tag: tag,
+            start: this.state.start,
+            count: this.state.count
+          }}
+        />
+        <LoadMore />
       </div>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps)
   let search = state[pageName][moduleName]
   return {
     isLoading: search.isLoading,
@@ -88,17 +90,11 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const DecoratedContent = withRouter(connect(mapStateToProps, null)(TagContent))
-const DecoratedPresetTags = withRouter(PresetTags)
 
 const Container = (props) => {
-  console.log(props)
   return (
-    <React.Fragment>
-      <DecoratedPresetTags />
-      <DecoratedContent {...props} />
-    </React.Fragment>
+    <DecoratedContent {...props} />
   )
 }
-
 
 export default Container

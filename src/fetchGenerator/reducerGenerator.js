@@ -1,37 +1,62 @@
 import actionTypeGenerator from './actionTypeGenerator'
+import { stat } from 'fs'
 
+
+/**
+ * costomReducer should be like this:
+ * {
+ *   type:
+ *   process: (state, action)=>{}
+ * }
+ * 
+ * @param {any} {
+ *   pageName,
+ *   moduleName,
+ *   initialState = { isLoading: true },
+ *   ...customReducer
+ * } 
+ * @returns 
+ */
 function reducerGenerator({
   pageName,
   moduleName,
-  initialState = { isLoading: true }
+  initialState = { isLoading: true },
+  customReducers
 })
 {
   const ACTION_TYPE = actionTypeGenerator(pageName, moduleName)
-  let dataReducer = function (state = initialState, action) {
-    switch (action.type) {
-      case ACTION_TYPE.START: {
-        return {
-          ...state,
-          isLoading: action.isLoading,
+  return function (state = initialState, action) {
+    if (typeof customReducers === 'object' && Object.keys(customReducers).length) {
+      let keys = Object.keys(customReducers)
+      for (let i = 0; i < keys.length; i++) {
+        if (keys[i] === action.type) {
+          return customReducers[keys[i]](state, action)
         }
-      }
-
-      case ACTION_TYPE.SUCCESS: {
-        return {
-          ...state,
-          isLoading: action.isLoading,
-          payload: action.payload,
-        }
-      }
-      case ACTION_TYPE.FAILURE: {
-        return state
-      }
-      default: {
-        return state
       }
     }
+
+    if (action.type === ACTION_TYPE.START) {
+      return {
+        ...state,
+        isLoading: action.isLoading,
+      }
+    }
+
+    if (action.type === ACTION_TYPE.SUCCESS) {
+      return {
+        ...state,
+        isLoading: action.isLoading,
+        payload: action.payload,
+      }
+    }
+
+    if (action.type === ACTION_TYPE.FAILURE) {
+      return state
+    }
+
+
+    return state
   }
-  return dataReducer
 }
 
 

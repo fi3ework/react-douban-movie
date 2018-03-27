@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component } from 'react'
 import style from './style.scss'
 import presetData from './constant'
 import { Link } from 'react-router-dom'
@@ -7,6 +7,7 @@ import cs from 'classnames'
 class PresetTags extends Component {
   constructor(props) {
     super(props)
+    console.log(props)
     this.presetData = presetData
     this.state = {
       currTag: decodeURIComponent(this.selectTag())
@@ -16,13 +17,11 @@ class PresetTags extends Component {
   selectTag = () => {
     let currTag = this.props.location.search.substring(3) ||
       encodeURIComponent('电影')
-    console.log(currTag)
     return currTag
   }
 
   onChange = (tag) => {
-    console.log(tag)
-    console.log(this.state)
+    this.props.clearTagData()
     this.setState({
       currTag: tag
     })
@@ -33,7 +32,6 @@ class PresetTags extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className={style.presestTagWrapper}>
         <p className={style.title}>选影视</p>
