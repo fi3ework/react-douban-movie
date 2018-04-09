@@ -1,0 +1,9 @@
+@import '../../../css/constant.scss';
+.loadMore {
+  cursor: pointer;
+  padding: 10px 0;
+  font-size: 15px;
+  color: $linkBlue;
+  background-color: #f7f7f7;
+  text-align: center;
+}

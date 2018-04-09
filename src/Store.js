@@ -63,6 +63,7 @@ const reducer = combineReducers({
 })
 
 const middlewares = [thunkMiddleware, cacheMiddleware]
+
 if (process.env.NODE_ENV !== 'production') {
   middlewares.push(logger)
 }

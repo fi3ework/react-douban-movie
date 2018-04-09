@@ -4,10 +4,9 @@ import { pageName, moduleName } from './constant'
 import { API_TAG } from '@/constants'
 import detailsComponentGenerator from '@/Components/DetailsComponent'
 import style from './style.scss'
-import DoubanPagination from '@/Components/DoubanPagination'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { actionCreator } from '@/fetchGenerator'
+import LoadMore from '../LoadMore'
 
 const TagDataView = viewGenerator(
   {
@@ -21,17 +20,6 @@ const TagDataView = viewGenerator(
     })
   }
 )
-
-const loadMoreAction = () => {
-  let URL = API_TAG
-  let actionToDispatch = actionCreator({ pageName, moduleName, URL })
-}
-
-const LoadMore = () => {
-  return (
-    <div className={style.loadMore} onClick={() => { }}>加载更多</div>
-  )
-}
 
 class TagContent extends Component {
   constructor(props) {
@@ -65,7 +53,6 @@ class TagContent extends Component {
   render() {
     let tag = this.props.params.query
     let MoviesInTag = this.tagDataView
-    console.log(this.props.payload)
     return (
       <div className={style.content}>
         <MoviesInTag

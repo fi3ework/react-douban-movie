@@ -3,6 +3,7 @@ let caches = {}
 const cacheMiddleware = store => next => action => {
   if (typeof action.cacheKey === 'undefined') {
     next(action)
+    return
   }
   let cacheIndex = Object.keys(caches).indexOf(action.cacheKey)
   if (cacheIndex < 0) {

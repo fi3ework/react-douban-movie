@@ -1,6 +1,4 @@
 import actionTypeGenerator from './actionTypeGenerator'
-import { stat } from 'fs'
-
 
 /**
  * costomReducer should be like this:

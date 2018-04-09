@@ -5,8 +5,9 @@ function actionCreator({
   pageName,
   moduleName,
   URL,
-  params = {},
-  doesCache = false
+  fetchParams = {},
+  doesCache = false,
+  extraActionProperty = {}
 }) {
   const ACTION_TYPES = actionTypeGenerator(pageName, moduleName)
   return (dispatch) => {
@@ -22,7 +23,7 @@ function actionCreator({
         payload: getCache(URL),
       })
     } else {
-      fetch(URL, { params: params })
+      fetch(URL, { params: fetchParams })
         .then(response => {
           if (response.status !== 200) {
             throw new Error('Fail to get response with status:' + response.status)
@@ -32,6 +33,7 @@ function actionCreator({
               type: ACTION_TYPES.SUCCESS,
               isLoading: false,
               payload: responseData,
+              ...extraActionProperty
             }
 
             if (doesCache) {
