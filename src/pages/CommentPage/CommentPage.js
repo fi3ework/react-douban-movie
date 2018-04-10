@@ -40,7 +40,7 @@ class CommentsPage extends Component {
     let CommentsComponent = this.commentsComponent
     return (
       <div className={style.content}>
-        <div>
+        <div className={style.commentWrapper}>
           <CommentsComponent
             params={{
               id: id,

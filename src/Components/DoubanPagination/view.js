@@ -19,6 +19,7 @@ class DoubanPagination extends Component {
   }
 
   onPaginationChange = (page) => {
+    console.log(window.history)
     let count = 20
     let { pathname, search } = this.props.location
 

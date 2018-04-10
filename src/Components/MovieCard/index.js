@@ -1,1 +1,1 @@
-export { default } from './views/component'
+export { default } from './views/view'

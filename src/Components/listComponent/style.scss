@@ -4,9 +4,12 @@
   font-size: 14px;
   display: flex;
   justify-content: space-between;
+  &:first-of-type {
+    border-top: none;
+  }
 }
 
-.subject a{
+.subject a {
   color: #3576a8;
 }
 
@@ -14,7 +17,7 @@
   border-bottom: 1px dashed #dddddd;
 }
 
-.newSup{
+.newSup {
   position: relative;
   top: -5px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;

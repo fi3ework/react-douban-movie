@@ -1,28 +1,30 @@
-let caches = {}
+const caches = {}
+
+const hasCachedKey = (cacheKey) => {
+  return Object.keys(caches).indexOf(cacheKey) >= 0
+}
 
 const cacheMiddleware = store => next => action => {
-  if (typeof action.cacheKey === 'undefined') {
+  if (typeof action.cacheKey === 'undefined' ||
+    typeof action.cacheValue === 'undefined') {
     next(action)
     return
   }
-  let cacheIndex = Object.keys(caches).indexOf(action.cacheKey)
-  if (cacheIndex < 0) {
+
+  if (!hasCachedKey(action.cacheKey)) {
     caches[action.cacheKey] = action.cacheValue
   }
-  console.log(caches)
   next(action)
 }
 
 const getCache = (cacheKey) => {
-  console.log(caches)
-  return caches[cacheKey]
+  if (hasCachedKey) {
+    return caches[cacheKey]
+  }
 }
 
-const isCached = (cacheKey, cacheCompare = () => {
-  let cacheIndex = Object.keys(caches).indexOf(cacheKey)
-  return cacheIndex < 0 ? false : true
-}) => {
-  return cacheCompare(cacheKey)
+const isCached = (cacheKey, cacheDetector = hasCachedKey) => {
+  return hasCachedKey(cacheKey)
 }
 
 export { cacheMiddleware, isCached, getCache }

@@ -40,7 +40,7 @@ class ReivewsPage extends Component {
     let ReviewsComponent = this.reviewsComponent
     return (
       <div className={style.content}>
-        <div>
+        <div className={style.reviewWrapper}>
           <ReviewsComponent
             params={{
               id: id,

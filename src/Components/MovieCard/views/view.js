@@ -54,7 +54,7 @@ const pubbedInfo = (props) => {
 }
 
 // 还未上映的信息
-const notPubedInfo = (props) => {
+const notPubbedInfo = (props) => {
   return <div>{props.mainlandPubdate}上映</div>
 }
 
@@ -76,20 +76,22 @@ const MoiveCard = (props) => {
     title,
     imgSrc,
     isPubed,
-    isLoading
+    isLoading,
+    hasHoverInfo
   // 如果还没传入数据
   if (!props.data) {
     id = -1
     title = ''
     imgSrc = loadingImg
-    isPubed = false
+    isPubed = true
     isLoading = true
   } else {
     ({
       id,
       title,
       images: { large: imgSrc },
-      isPubed,
+      isPubed = true,
+      hasHoverInfo = false
     } = props.data)
     isLoading = false
   }
@@ -115,7 +117,7 @@ const MoiveCard = (props) => {
           <p className={style.title}>{truncate(title, { 'length': 7 })}</p>
           {
             // 暂未上映和已经上映
-            isPubed ? notPubedInfo(props) : pubbedInfo(props)
+            isPubed ? pubbedInfo(props) : notPubbedInfo(props)
           }
         </div>
         {
