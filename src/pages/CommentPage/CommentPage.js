@@ -12,15 +12,8 @@ class CommentsPage extends Component {
     this.commentsComponent = dataView()
     let start = 0
     let count = 20
-    let startReg = /start=(\d*)/.exec(this.props.location.search)
-    if (startReg && startReg[1] !== '') {
-      start = startReg[1]
-    }
-
-    let countReg = /start=(\d*)/.exec(this.props.location.search)
-    if (countReg && countReg[1] !== '') {
-      count = countReg[1]
-    }
+    start = this.getQueryFromLocation(this.props.location.search, 'start')
+    count = this.getQueryFromLocation(this.props.location.search, 'count')
 
     this.state = {
       id: this.props.match.params.id,
@@ -29,10 +22,20 @@ class CommentsPage extends Component {
     }
   }
 
-  onQueryChange = (start) => {
+  componentWillReceiveProps = (nextProps) => {
     this.setState({
-      start
+      start: this.getQueryFromLocation(nextProps.location.search, 'start'),
+      count: this.getQueryFromLocation(nextProps.location.search, 'count')
     })
+  }
+
+  getQueryFromLocation = (search, query) => {
+    let regResult
+    let queryReg = /start=(\d*)/.exec(search)
+    if (queryReg && queryReg[1] !== '') {
+      regResult = queryReg[1]
+      return regResult
+    }
   }
 
   render() {

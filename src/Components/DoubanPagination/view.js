@@ -33,7 +33,6 @@ class DoubanPagination extends Component {
     }
 
     this.props.history.push(pathname + search)
-    this.props.onChange((page - 1) * count)
     this.backToTop()
   }
 
