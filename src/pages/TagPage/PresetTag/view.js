@@ -1,35 +1,36 @@
 import React, { Component } from 'react'
 import style from './style.scss'
 import presetData from './constant'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import cs from 'classnames'
+
 
 class PresetTags extends Component {
   constructor(props) {
     super(props)
-    console.log(props)
     this.presetData = presetData
     this.state = {
-      currTag: decodeURIComponent(this.selectTag())
+      currTag: this.getSelectedTag(this.props.location.search)
     }
   }
 
-  selectTag = () => {
-    let currTag = this.props.location.search.substring(3) ||
-      encodeURIComponent('电影')
-    return currTag
+  componentWillReceiveProps = (nextProps) => {
+    let newTag = this.getSelectedTag(nextProps.location.search)
+    this.setState({
+      currTag: newTag
+    })
   }
 
-  onChange = (tag) => {
-    this.props.clearTagData()
-    this.setState({
-      currTag: tag
-    })
+  getSelectedTag = (search) => {
+    let currTag = decodeURIComponent(search.substring(3)) ||
+      encodeURIComponent('电影')
+    return currTag
   }
 
   isSelectd = (tag) => {
     return tag === this.state.currTag
   }
+
 
   render() {
     return (
@@ -39,7 +40,6 @@ class PresetTags extends Component {
           return (
             <Link
               to={`/tag?q=${tag}`}
-              onClick={() => this.onChange(tag)}
               className={
                 cs({
                   [style.tag]: true,
@@ -56,4 +56,4 @@ class PresetTags extends Component {
   }
 }
 
-export default PresetTags
+export default withRouter(PresetTags)

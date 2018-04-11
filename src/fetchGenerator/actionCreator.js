@@ -58,5 +58,4 @@ function actionCreator({
   }
 }
 
-
 export default actionCreator
