@@ -9,8 +9,8 @@ class HomePage extends Component {
     return (
       <div className={style.container}>
         <div>
-          <InTheatersCarousel />
-          <CommingSoonCarousel />
+          <InTheatersCarousel className={style.carousel} />
+          <CommingSoonCarousel className={style.carousel} />
         </div>
         <div>
           <WeeklyList />

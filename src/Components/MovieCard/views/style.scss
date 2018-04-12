@@ -1,5 +1,10 @@
 @import '../../../css/constant.scss';
-// card
+
+.linkWrapper{
+  position: relative;
+  display: block;
+}
+// ===== card ===== 
 .card {
   width: 130px;
   margin: 4px 0px 4px 0px;
@@ -80,4 +85,14 @@
 .buyButtonWrapper {
   margin: 4px auto 10px auto;
   text-align: center;
+}
+
+// ===== hoverCard =====
+.hoverCardWrapper{
+  position: absolute;
+  width: 180px;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  padding: 20px;
+  z-index: 999;
 }

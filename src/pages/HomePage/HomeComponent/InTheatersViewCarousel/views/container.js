@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import style from './style.scss'
 
 const ItemView = (props) => {
-  return <MovieCard hasBuyButton={true} {...props} />
+  return <MovieCard hasBuyButton={true} hasHoverInfo={true} {...props} />
 }
 
 const DataView = viewGenerator(

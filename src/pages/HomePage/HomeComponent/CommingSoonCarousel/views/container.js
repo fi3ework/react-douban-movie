@@ -6,7 +6,7 @@ import MovieCard from '@/Components/MovieCard'
 import MovieCarouselGenerator from '@/Components/CarouselComponent'
 
 const ItemView = (props) => {
-  return <MovieCard {...props} />
+  return <MovieCard hasHoverInfo={true} {...props} />
 }
 
 const DataView = viewGenerator(

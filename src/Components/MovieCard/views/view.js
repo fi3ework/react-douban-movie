@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { Rate, Button } from 'antd'
 import { Link } from 'react-router-dom'
 import truncate from 'lodash/truncate'
 import classNames from 'classnames'
 import loadingImg from '../assets/loading.svg'
 import style from './style.scss'
+import HoverCard from './HoverCard'
+import ReactDOM from 'react-dom'
+import { getElementPos, getElementLeft } from '@/utils/getAbsPos'
 
 // 已上映的信息
 const pubbedInfo = (props) => {
@@ -70,64 +73,117 @@ const BuyButton = (props) =>
     <Button type="primary">选座购票</Button>
   </div>
 
-
-const MoiveCard = (props) => {
-  let id,
-    title,
-    imgSrc,
-    isPubed,
-    isLoading,
-    hasHoverInfo
-  // 如果还没传入数据
-  if (!props.data) {
-    id = -1
-    title = ''
-    imgSrc = loadingImg
-    isPubed = true
-    isLoading = true
-  } else {
-    ({
-      id,
-      title,
-      images: { large: imgSrc },
-      isPubed = true,
-      hasHoverInfo = false
-    } = props.data)
-    isLoading = false
+class MovieCard extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      cardPos: { x: -1, y: -1 },
+      doesShowHoverInfo: false
+    }
   }
 
-  return (
-    <Link to={!isLoading ? `/subject/${id}` : ''}>
-      <div
-        className={
-          classNames({
-            [style.loadingCard]: isLoading,
-            [style.card]: true
-          })}
-        data-role="card">
-        <div className={style.customImage} data-role="cardImage">
-          <img alt={title} src={imgSrc}
-            className={classNames({
-              [style.loadingImg]: isLoading
+  componentDidMount = () => {
+    this.setState({
+      cardPos: this.getCardPos()
+    })
+  }
+
+  onMouseEnterHandler = () => {
+    console.log(this.getCardPos())
+    let track = document.getElementsByClassName('slick-track')[0]
+    console.log(window.getComputedStyle(track).transform)
+
+
+    this.setState({
+      cardPos: this.getCardPos(),
+      doesShowHoverInfo: true
+    })
+  }
+
+  onMouseLeaveHandler = () => {
+    console.log('out')
+    this.setState({
+      doesShowHoverInfo: false
+    })
+  }
+
+  getCardPos = () => {
+    const pos = getElementPos(this.card)
+    const x = pos.x + 140
+    const y = pos.y
+    return { x, y }
+  }
+
+  render() {
+    let id,
+      title,
+      imgSrc,
+      isPubed,
+      isLoading
+    // 如果还没传入数据
+    if (!this.props.data) {
+      id = -1
+      title = ''
+      imgSrc = loadingImg
+      isPubed = true
+      isLoading = true
+    } else {
+      ({
+        id,
+        title,
+        images: { large: imgSrc },
+        isPubed = true,
+      } = this.props.data)
+      isLoading = false
+    }
+
+    return (
+      <Link
+        to={!isLoading ? `/subject/${id}` : ''}
+        className={style.linkWrapper}
+      >
+        <div
+          onMouseEnter={this.onMouseEnterHandler}
+          onMouseLeave={this.onMouseLeaveHandler}
+          ref={(card) => { this.card = card }}
+          className={
+            classNames({
+              [style.loadingCard]: isLoading,
+              [style.card]: true
             })}
-          />
-        </div>
-        <div>
-          {/* 电影名 */}
-          <p className={style.title}>{truncate(title, { 'length': 7 })}</p>
+          data-role="card">
+          <div className={style.customImage} data-role="cardImage">
+            <img alt={title} src={imgSrc}
+              className={classNames({
+                [style.loadingImg]: isLoading
+              })}
+            />
+          </div>
+          <div>
+            {/* 电影名 */}
+            <p className={style.title}>{truncate(title, { 'length': 7 })}</p>
+            {
+              // 暂未上映和已经上映
+              isPubed ? pubbedInfo(this.props) : notPubbedInfo(this.props)
+            }
+          </div>
           {
-            // 暂未上映和已经上映
-            isPubed ? pubbedInfo(props) : notPubbedInfo(props)
+            // 购票按钮
+            !isLoading && this.props.hasBuyButton ?
+              <BuyButton title={title} /> : null
           }
         </div>
-        {
-          // 购票按钮
-          !isLoading && props.hasBuyButton ?
-            <BuyButton title={title} /> : null
+        {/* 悬浮时显示的信息 */}
+        {this.props.hasHoverInfo && this.state.doesShowHoverInfo ?
+          ReactDOM.createPortal(
+            <HoverCard data={this.props.data} pos={this.state.cardPos} />,
+            document.getElementById('root'),
+          ) : null
         }
-      </div>
-    </Link>
-  )
+      </Link>
+    )
+  }
 }
 
-export default MoiveCard
+
+export default MovieCard

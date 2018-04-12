@@ -4,9 +4,9 @@ import style from './style.scss'
 const Attr = (props) => {
   let slash = props.isLast ? null : <span> / </span>
   return (
-    props.isHref ?
+    props.isHref && props.enableLink ?
       <span><a href={props.alt}>{props.children}</a>{slash}</span> :
-      <span >{props.children}{slash}</span>
+      <span>{props.children}{slash}</span>
   )
 }
 
@@ -29,6 +29,7 @@ const Attrs = (props) => {
           isHref={item.alt}
           isLast={index === _length - 1}
           alt={item.alt}
+          enableLink={props.enableLink}
         >
           {item.name || item}
         </Attr>
@@ -38,14 +39,14 @@ const Attrs = (props) => {
   return sequence
 }
 
-const InfoQuery = ({ query, value }) => {
+const InfoQuery = ({ query, value, enableLink = true }) => {
   if (!value || Object.keys(value).length === 0) {
     return null
   }
 
   return (
     <span>
-      <span className={style.infoQuery}>{query}</span>: <Attrs value={value} />
+      <span className={style.infoQuery}>{query}</span>: <Attrs value={value} enableLink={enableLink} />
       <br />
     </span>
   )

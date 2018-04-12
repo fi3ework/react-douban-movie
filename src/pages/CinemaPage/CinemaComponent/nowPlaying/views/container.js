@@ -1,6 +1,5 @@
 import React from 'react'
 import { viewGenerator } from '@/fetchGenerator'
-import ViewGenerator from '@/fetchGenerator/viewGenerator2'
 import { API_IN_THEATERS } from '@/constants'
 import { pageName, moduleName } from '../constant'
 import matrixComponentGenerator from '@/Components/MatrixComponent'
@@ -15,16 +14,20 @@ const Matrix = matrixComponentGenerator({
   cols: 5
 })
 
+const MatrixComponent = viewGenerator(
+  {
+    pageName,
+    moduleName,
+    API: API_IN_THEATERS,
+    view: Matrix
+  }
+)
+
 const NowPlayingComponent = (props) => {
   return (
     <div>
       <h2>正在上映</h2>
-      <ViewGenerator
-        pageName={pageName}
-        moduleName={moduleName}
-        API={API_IN_THEATERS}
-        view={Matrix}
-      />
+      <MatrixComponent />
     </div >
   )
 }
