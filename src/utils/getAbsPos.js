@@ -1,36 +1,36 @@
+function getTransformPos(element) {
+  let translate = window.getComputedStyle(element, null).transform
+  let translateX
+  let translateY
+  if (/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, \-?\d+, \-?\d+\)/.exec(translate)) {
+    console.log(/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+), \-?\d+\)/.exec(translate))
+    translateX = Number.parseInt(/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+), \-?\d+\)/.exec(translate)[1], 10)
+    translateY = Number.parseInt(/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+)\)/.exec(translate)[1], 10)
+    return { x: translateX, y: translateY }
+  } else {
+    return { x: 0, y: 0 }
+  }
+}
+
 function getElementPos(e) {
   if (!e) {
     return { x: 0, y: 0 }
   }
 
   let currEle = e
-  let x = currEle.offsetLeft,
-    y = currEle.offsetTop,
-    translate = window.getComputedStyle(currEle, null).transform,
-    translateX = Number.parseInt(/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+), \-?\d+\)/.exec(translate)[1], 10),
-    translateY = Number.parseInt(/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+)\)/.exec(translate)[1], 10)
-  x += translateX
-  y += translateY
+  let translate = getTransformPos(currEle)
+  let x = currEle.offsetLeft + translate.x,
+    y = currEle.offsetTop + translate.y
 
   while (currEle.offsetParent) {
     currEle = currEle.offsetParent
-    translate = window.getComputedStyle(currEle, null).transform
-    if (/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+), \-?\d+\)/.exec(translate)) {
-      x += currEle.offsetLeft + Number.parseInt(/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+), \-?\d+\)/.exec(translate)[1], 10)
-    } else {
-      x += currEle.offsetLeft
-    }
+    translate = getTransformPos(currEle)
+    // console.log(translate)
+    x += translate.x + currEle.offsetLeft
+    y += translate.y + currEle.offsetTop
+  }
 
-    if (/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+)\)/.exec(translate)) {
-      y += currEle.offsetTop + Number.parseInt(/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+)\)/.exec(translate)[1], 10)
-    } else {
-      y += currEle.offsetTop
-    }
-  }
-  return {
-    'x': x,
-    'y': y
-  }
+  return { x, y }
 }
 
 function getElementLeft(element) {

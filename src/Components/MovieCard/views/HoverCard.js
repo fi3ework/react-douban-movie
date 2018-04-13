@@ -8,7 +8,6 @@ export default (props) => {
   if (!data) {
     return null
   }
-  console.log(props.pos)
   return (
     <div className={style.hoverCardWrapper}
       style={{ left: `${props.pos.x}px`, top: `${props.pos.y}px` }}>

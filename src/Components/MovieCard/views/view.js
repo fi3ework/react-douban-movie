@@ -7,7 +7,7 @@ import loadingImg from '../assets/loading.svg'
 import style from './style.scss'
 import HoverCard from './HoverCard'
 import ReactDOM from 'react-dom'
-import { getElementPos, getElementLeft } from '@/utils/getAbsPos'
+import { getElementPos } from '@/utils/getAbsPos'
 
 // 已上映的信息
 const pubbedInfo = (props) => {
@@ -82,18 +82,8 @@ class MovieCard extends PureComponent {
     }
   }
 
-  componentDidMount = () => {
-    this.setState({
-      cardPos: this.getCardPos()
-    })
-  }
-
   onMouseEnterHandler = () => {
-    console.log(this.getCardPos())
-    let track = document.getElementsByClassName('slick-track')[0]
-    console.log(window.getComputedStyle(track).transform)
-
-
+    console.log('in')
     this.setState({
       cardPos: this.getCardPos(),
       doesShowHoverInfo: true
