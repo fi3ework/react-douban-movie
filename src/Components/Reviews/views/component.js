@@ -4,7 +4,7 @@ import style from '../css/style.scss'
 import cs from 'classnames'
 
 // 长评底部的喜欢数及收起栏
-class PackBar extends PureComponent {
+class PackBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,19 +12,39 @@ class PackBar extends PureComponent {
     }
   }
 
+
   componentDidMount = () => {
-    document.addEventListener('scroll', this.shouldFixBarOnBottom)
+    document.addEventListener('scroll', this.shouldStickBarOnBottom, 'ss')
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.isFold === false && this.props.isFold === true) {
+      this.shouldStickBarOnBottom(null, nextProps.isFold)
+    }
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    if (this.state.isStickedOnBottom !== nextState.isStickedOnBottom ||
+      this.props !== nextProps) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  // 当点击展开按钮后再检查一次是否stick
+  componentDidUpdate = (prevProps, prevState) => {
+    this.shouldStickBarOnBottom()
   }
 
   componentWillUnmount = () => {
-    document.removeEventListener('scroll', this.shouldFixBarOnBottom)
+    document.removeEventListener('scroll', this.shouldStickBarOnBottom)
   }
 
-  shouldFixBarOnBottom = () => {
+  shouldStickBarOnBottom = () => {
     let contentRect = this.bar.previousSibling.getBoundingClientRect()
     let barRectHeight = this.bar.getBoundingClientRect().height
     let innerHeight = window.innerHeight
-
     if (!this.props.isFold &&
       contentRect.top <= innerHeight &&
       contentRect.bottom >= innerHeight - barRectHeight) {
@@ -44,14 +64,14 @@ class PackBar extends PureComponent {
         className={
           cs({
             [style.packWrapper]: true,
-            [style.packWrapperStickBottom]: this.state.isStickedOnBottom
+            [style.packWrapperStickBottom]: this.state.isStickedOnBottom && !this.props.isFold
           })
         }
         ref={(bar) => { this.bar = bar }}
       >
         <a><Icon type="up" /> {this.props.useful_count}</a>
         <a><Icon type="down" /> {this.props.useless_count}</a>
-        <a>{this.props.comments_count}回应</a>
+        <a>{this.props.comments_count} 回应</a>
         {
           this.props.isFold ? null :
           <div className={style.packButton} onClick={this.props.toggle}>收起</div>
@@ -126,7 +146,9 @@ class FoldReview extends Component {
               {this.contentDecorator(this.props.fullContent)}
             </div>
         }
-        {this.props.children(useful_count, useless_count, comments_count, this.state.isFold, this.toggle)}
+        {
+          this.props.children(useful_count, useless_count, comments_count, this.state.isFold, this.toggle)
+        }
       </div>
 
     )
@@ -157,7 +179,8 @@ const Review = (props) => {
       >
         {
           (useful_count, useless_count, comments_count, isFold, toggle) =>
-            <PackBar useful_count={useful_count}
+            <PackBar
+              useful_count={useful_count}
               useless_count={useless_count}
               comments_count={comments_count}
               toggle={toggle}
@@ -168,6 +191,5 @@ const Review = (props) => {
     </div>
   )
 }
-
 
 export default Review
