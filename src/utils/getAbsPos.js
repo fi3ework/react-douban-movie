@@ -3,7 +3,6 @@ function getTransformPos(element) {
   let translateX
   let translateY
   if (/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, \-?\d+, \-?\d+\)/.exec(translate)) {
-    console.log(/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+), \-?\d+\)/.exec(translate))
     translateX = Number.parseInt(/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+), \-?\d+\)/.exec(translate)[1], 10)
     translateY = Number.parseInt(/matrix\(\-?\d+, \-?\d+, \-?\d+, \-?\d+, \-?\d+, (\-?\d+)\)/.exec(translate)[1], 10)
     return { x: translateX, y: translateY }

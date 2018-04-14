@@ -39,6 +39,19 @@
   margin-right: 5px;
 }
 
+// PackerBar
+.packWrapper {
+  background-color: #fff;
+  width: 675px;
+}
+
+.packWrapperStickBottom {
+  position: fixed;
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+  bottom: 0;
+}
+
 .packWrapper a {
   background-color: #f0f7f9;
   border-radius: 3px;
@@ -48,6 +61,7 @@
     background-color: transparent;
   }
 }
+
 
 .packButton {
   float: right;

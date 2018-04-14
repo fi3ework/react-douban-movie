@@ -5,7 +5,6 @@ import React, { Component } from 'react'
 import Review from './component'
 
 class Container extends Component {
-
   render() {
     // 如果正在加载中
     if (this.props.isLoading) {
