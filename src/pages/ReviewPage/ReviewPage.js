@@ -5,6 +5,18 @@ import { view as dataView, moduleName as reviewsModuleName } from '@/Components/
 import SideInfo from '@/Components/SideSubjectInfo'
 import style from './style.scss'
 import DoubanPagination from '@/Components/DoubanPagination'
+import DocumentTitle from 'react-document-title'
+
+const SubjectDocumentTitle = (payload) => {
+  let title
+  console.log(payload)
+  if (payload) {
+    title = `${payload.subject.title}的影评 (${payload.total})`
+  } else {
+    title = '豆瓣影评'
+  }
+  return <DocumentTitle title={`${title}`}></DocumentTitle>
+}
 
 class ReivewsPage extends Component {
   constructor(props) {
@@ -45,6 +57,7 @@ class ReivewsPage extends Component {
       <div className={style.content}>
         <div className={style.reviewWrapper}>
           <ReviewsComponent
+            render={SubjectDocumentTitle}
             params={{
               id: id,
               start: this.state.start,

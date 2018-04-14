@@ -13,21 +13,24 @@ import NotFoundPage from './pages/404Page'
 import baseStyle from './css/base.scss'
 import Footer from './Components/Footer'
 import NavBar from './Components/NavBar'
+import DocumentTitle from 'react-document-title'
 
 const HomeRoute = ({ match }) => {
   console.log('HomeRoute')
-  console.log(match)
   return (
     <Switch >
-      <Route path={`${match.url}`} exact component={HomePage} />
-      <Route path={`${match.url}index`} component={HomePage} />
+      <DocumentTitle title={'豆瓣电影'}>
+        <Route path={`${match.url}`} exact component={HomePage} />
+      </DocumentTitle>
+      <DocumentTitle title={'豆瓣电影'}>
+        <Route path={`${match.url}index`} component={HomePage} />
+      </DocumentTitle>
     </Switch >
   )
 }
 
 const SubjectRoute = ({ match }) => {
   console.log('SubjectRoute')
-  console.log(match)
   return (
     <Switch>
       <Route path={`${match.path}/:id`} exact component={MoviePage} />
@@ -41,7 +44,6 @@ const SubjectRoute = ({ match }) => {
 
 const CelebrityRoute = ({ match }) => {
   console.log('Celebrity route')
-  console.log(match)
   return (
     <Switch>
       <Route path={`${match.path}/:id`} exact component={CelebrityPage} />
@@ -51,20 +53,22 @@ const CelebrityRoute = ({ match }) => {
 
 const ChartRoute = ({ match }) => {
   console.log('Chart route')
-  console.log(match)
   return (
     <Switch>
-      <Route path={`${match.path}`} exact component={ChartPage} />
+      <DocumentTitle title={'豆瓣电影排行榜'}>
+        <Route path={`${match.path}`} exact component={ChartPage} />
+      </DocumentTitle>
     </Switch>
   )
 }
 
 const CinemaRoute = ({ match }) => {
   console.log('Cinema route')
-  console.log(match)
   return (
     <Switch>
-      <Route path={`${match.path}`} exact component={CinemaPage} />
+      <DocumentTitle title={'选电影'}>
+        <Route path={`${match.path}`} exact component={CinemaPage} />
+      </DocumentTitle>
     </Switch>
   )
 }
@@ -78,9 +82,10 @@ const SearchRoute = ({ match, location }) => {
 
 const TagRoute = ({ match, location }) => {
   console.log('Tag route')
-  console.log(location)
   return (
-    <TagPage query={location.search.substring(3)} />
+    <DocumentTitle title={'选影视'}>
+      <TagPage query={location.search.substring(3)} />
+    </DocumentTitle>
   )
 }
 

@@ -5,6 +5,17 @@ import { view as dataView, moduleName as commentsModuleName } from '@/Components
 import DoubanPagination from '@/Components/DoubanPagination'
 import SideInfo from '@/Components/SideSubjectInfo'
 import style from './style.scss'
+import DocumentTitle from 'react-document-title'
+
+const SubjectDocumentTitle = (payload) => {
+  let title
+  if (payload) {
+    title = payload.subject.title + '的短评'
+  } else {
+    title = '豆瓣短评'
+  }
+  return <DocumentTitle title={`${title}`}></DocumentTitle>
+}
 
 class CommentsPage extends Component {
   constructor(props) {
@@ -42,30 +53,33 @@ class CommentsPage extends Component {
     let id = this.props.match.params.id
     let CommentsComponent = this.commentsComponent
     return (
-      <div className={style.content}>
-        <div className={style.commentWrapper}>
-          <CommentsComponent
-            params={{
-              id: id,
-              start: this.state.start,
-              count: this.state.count
-            }}
-          />
+      <DocumentTitle title={'豆瓣电影'}>
+        <div className={style.content}>
+          <div className={style.commentWrapper}>
+            <CommentsComponent
+              render={SubjectDocumentTitle}
+              params={{
+                id: id,
+                start: this.state.start,
+                count: this.state.count
+              }}
+            />
+            {
+              this.props.isLoading || typeof this.props.isLoading === 'undefined' ? null :
+              <DoubanPagination
+                onChange={this.onQueryChange}
+                total={this.props.payload.total}
+              />
+            }
+          </div>
           {
             this.props.isLoading || typeof this.props.isLoading === 'undefined' ? null :
-            <DoubanPagination
-              onChange={this.onQueryChange}
-              total={this.props.payload.total}
+            <SideInfo
+              data={this.props.payload.subject}
             />
           }
         </div>
-        {
-          this.props.isLoading || typeof this.props.isLoading === 'undefined' ? null :
-          <SideInfo
-            data={this.props.payload.subject}
-          />
-        }
-      </div>
+      </DocumentTitle>
     )
   }
 }

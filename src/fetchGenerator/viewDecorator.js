@@ -30,9 +30,14 @@ const viewDecorator = WrappedComponent => {
 
     render() {
       return (
-        <WrappedComponent
-          {...this.props}
-        />
+        <React.Fragment>
+          <WrappedComponent
+            {...this.props}
+          />
+          {
+            this.props.render ? this.props.render(this.props.payload) : null
+          }
+        </React.Fragment>
       )
     }
   }

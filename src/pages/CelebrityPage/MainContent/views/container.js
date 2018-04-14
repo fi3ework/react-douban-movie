@@ -7,6 +7,7 @@ import { pageName, moduleName } from '../constant'
 import { viewGenerator } from '@/fetchGenerator'
 import { API_CELEBRITY } from '@/constants'
 import Loading from '@/Components/Loading'
+import DocumentTitle from 'react-document-title'
 
 class Celebrity extends React.Component {
   render() {
@@ -23,36 +24,38 @@ class Celebrity extends React.Component {
     }
     = this.props.payload
     return (
-      <div className={style.celebrityWrapper}>
-        <h1 className={style.title}>{name}{name_en}</h1>
-        <div className={style.headline}>
-          <div>
-            <img src={avatar} alt={avatar} className={style.avatar} />
+      <DocumentTitle title={`${name} (豆瓣)`}>
+        <div className={style.celebrityWrapper}>
+          <h1 className={style.title}>{name}{name_en}</h1>
+          <div className={style.headline}>
+            <div>
+              <img src={avatar} alt={avatar} className={style.avatar} />
+            </div>
+            <div>
+              <Info data={this.props.payload} />
+            </div>
           </div>
           <div>
-            <Info data={this.props.payload} />
-          </div>
-        </div>
-        <div>
-          <div className={style.dashedBorder}></div>
-          <div>
-            <h2 className={style.sectionTitle}>影人简介  · · · · · ·</h2>
-            <p>{summary}</p>
-          </div>
-          <div>
-            <h2 className={style.sectionTitle}>影人图片  · · · · · ·</h2>
-            <RelatedPic data={photos} />
-          </div>
-          <div>
-            <h2 className={style.sectionTitle}>最受好评的5部作品  · · · · · ·</h2>
-            <MovieList data={works.map(item => (item.subject))} />
-          </div>
-          {/* <div>
+            <div className={style.dashedBorder}></div>
+            <div>
+              <h2 className={style.sectionTitle}>影人简介  · · · · · ·</h2>
+              <p>{summary}</p>
+            </div>
+            <div>
+              <h2 className={style.sectionTitle}>影人图片  · · · · · ·</h2>
+              <RelatedPic data={photos} />
+            </div>
+            <div>
+              <h2 className={style.sectionTitle}>最受好评的5部作品  · · · · · ·</h2>
+              <MovieList data={works.map(item => (item.subject))} />
+            </div>
+            {/* <div>
             <h2 className={style.sectionTitle}>最受好评的5部作品  · · · · · ·</h2>
             <MovieList data={worksSubjects} />
           </div> */}
+          </div>
         </div>
-      </div>
+      </DocumentTitle >
     )
   }
 }
