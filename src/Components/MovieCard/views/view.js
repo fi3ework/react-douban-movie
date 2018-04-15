@@ -7,7 +7,7 @@ import loadingImg from '../assets/loading.svg'
 import style from './style.scss'
 import HoverCard from './HoverCard'
 import ReactDOM from 'react-dom'
-import { getElementPos } from '@/utils/getAbsPos'
+import { getAbsPos } from '@/utils/getAbsPos'
 
 // 已上映的信息
 const pubbedInfo = (props) => {
@@ -98,8 +98,8 @@ class MovieCard extends PureComponent {
   }
 
   getCardPos = () => {
-    const pos = getElementPos(this.card)
-    const x = pos.x + 140
+    const pos = getAbsPos(this.card)
+    const x = pos.x + this.card.getBoundingClientRect().width + 15
     const y = pos.y
     return { x, y }
   }
