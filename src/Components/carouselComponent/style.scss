@@ -1,0 +1,31 @@
+.sliderWrapper{
+  position: relative;
+  width: 800px;
+}
+
+.indexIndicator {
+  position: absolute;
+  top: -48px;
+  right: 60px;
+  color: #aaa;
+}
+
+:global(.slick-arrow){
+  display: block;
+  position: absolute;
+  top: -47px;
+  height: 17px;
+  width: 17px;
+  color: #6f98ce;
+  font-size: 14px;
+  text-align: center;
+  line-height: 15px;
+}
+
+:global(.slick-prev) {
+  right: 30px;
+}
+
+:global(.slick-next) {
+  right: 10px;
+}

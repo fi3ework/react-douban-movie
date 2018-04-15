@@ -8,7 +8,7 @@ class HomePage extends Component {
   render() {
     return (
       <div className={style.container}>
-        <div>
+        <div className={style.carouselsWrapper}>
           <InTheatersCarousel className={style.carousel} />
           <CommingSoonCarousel className={style.carousel} />
         </div>

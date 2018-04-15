@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Rate, Icon } from 'antd'
 import style from '../css/style.scss'
 import cs from 'classnames'
