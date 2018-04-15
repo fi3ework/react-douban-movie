@@ -95,7 +95,7 @@ class NavBar extends Component {
         <div className={style.globalNavItems} >
           <Link to={'/'} >豆瓣</Link>
           <a>读书</a>
-          <a>读书</a>
+          <a>电影</a>
           <a>音乐</a>
         </div>
         <div className={style.movieNav}>

@@ -12,9 +12,8 @@ class PackBar extends Component {
     }
   }
 
-
   componentDidMount = () => {
-    document.addEventListener('scroll', this.shouldStickBarOnBottom, 'ss')
+    document.addEventListener('scroll', this.shouldStickBarOnBottom)
   }
 
   componentWillReceiveProps = (nextProps) => {
