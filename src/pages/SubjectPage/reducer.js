@@ -1,4 +1,4 @@
-import { reducerGenerator } from '@/fetchGenerator'
+import { reducerGenerator } from '@/utils/fetchGenerator'
 import { pageName, moduleName } from './constant'
 import { combineReducers } from 'redux'
 

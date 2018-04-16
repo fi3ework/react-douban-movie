@@ -1,6 +1,6 @@
 import React from 'react'
 import { API_WEEKLY } from '@/constants'
-import { viewGenerator } from '@/fetchGenerator'
+import { viewGenerator } from '@/utils/fetchGenerator'
 import { pageName, moduleName } from '../constant'
 import listComponentGenerator from '@/Components/ListComponent'
 import { Link } from 'react-router-dom'

@@ -9,7 +9,7 @@ import RelatedPic from './RelatedPic'
 import PopularComments from './PopularComments'
 import PopularReviews from './PopularReviews'
 import containerStyle from '../css/main.scss'
-import { viewGenerator } from '@/fetchGenerator'
+import { viewGenerator } from '@/utils/fetchGenerator'
 import { pageName, moduleName } from '../constant'
 import { API_MOVIE_SUBJECT } from '@/constants'
 import Loading from '@/Components/Loading'
@@ -17,7 +17,6 @@ import DocumentTitle from 'react-document-title'
 
 class MovieSubject extends React.Component {
   static propTypes = {
-    fetchData: PropTypes.func.isRequired
   }
 
   render() {

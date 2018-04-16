@@ -1,4 +1,4 @@
-import { viewGenerator } from '@/fetchGenerator'
+import { viewGenerator } from '@/utils/fetchGenerator'
 import { API_WEEKLY } from '@/constants'
 import { pageName, moduleName } from '../constant'
 import listComponentGenerator from '@/Components/ListComponent'

@@ -1,4 +1,4 @@
-import { viewGenerator } from '@/fetchGenerator'
+import { viewGenerator } from '@/utils/fetchGenerator'
 import { API_MOVIE_REVIEWS } from '@/constants'
 import { pageName, moduleName } from '../constant'
 import React, { Component } from 'react'

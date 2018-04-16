@@ -1,4 +1,4 @@
-import { viewGenerator } from '@/fetchGenerator'
+import { viewGenerator } from '@/utils/fetchGenerator'
 import { API_COMING_SOON } from '@/constants'
 import { pageName, moduleName } from '../constant'
 import React from 'react'

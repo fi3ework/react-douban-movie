@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import viewGenerator from '@/fetchGenerator/viewGenerator'
+import viewGenerator from '@/utils/fetchGenerator/viewGenerator'
 import { pageName, moduleName } from './constant'
 import { API_SEARCH } from '@/constants'
 import detailsComponentGenerator from '@/Components/DetailsComponent'

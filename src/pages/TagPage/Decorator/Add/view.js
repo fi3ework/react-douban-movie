@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { actionCreator } from '@/fetchGenerator'
+import { actionCreator } from '@/utils/fetchGenerator'
 import pageName from '../../constant'
 import { moduleName } from '../../SearchResult/constant'
 

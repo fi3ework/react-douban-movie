@@ -1,4 +1,4 @@
-import { reducerGenerator, actionTypeGenerator } from '@/fetchGenerator'
+import { reducerGenerator, actionTypeGenerator } from '@/utils/fetchGenerator'
 import { pageName, moduleName } from './constant'
 
 let SUCCESS_ACTION = actionTypeGenerator(pageName, moduleName).SUCCESS

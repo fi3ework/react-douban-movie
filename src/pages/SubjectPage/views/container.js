@@ -14,7 +14,7 @@ class MoviePage extends Component {
       <MovieSubject
         id={id}
         params={{
-          id: id,
+          id: id
         }}
       />
     )

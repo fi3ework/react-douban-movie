@@ -1,5 +1,5 @@
 import React from 'react'
-import { viewGenerator } from '@/fetchGenerator'
+import { viewGenerator } from '@/utils/fetchGenerator'
 import { API_IN_THEATERS } from '@/constants'
 import { pageName, moduleName } from '../constant'
 import matrixComponentGenerator from '@/Components/MatrixComponent'

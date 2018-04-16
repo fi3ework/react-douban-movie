@@ -1,5 +1,5 @@
 import actionTypeGenerator from './actionTypeGenerator'
-import { isCached, getCache } from '../utils/redux-cache'
+import { isCached, getCache } from '../redux-cache'
 
 function actionCreator({
   pageName,

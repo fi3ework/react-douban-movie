@@ -5,6 +5,7 @@ import actionCreator from './actionCreator'
 function generateViewWithFetch({
   pageName,
   moduleName,
+  params = {},
   API,
   fetchParams,
   doesCache = false,
@@ -35,8 +36,7 @@ function generateViewWithFetch({
         }
       }
     })
-    let composedRequest = requestPara ? APItoFill + requestPara : APItoFill
-    return composedRequest
+    return APItoFill + requestPara
   }
 
   let mapStateToProps = (state, ownProps) => {
@@ -50,12 +50,6 @@ function generateViewWithFetch({
 
   let mapDispatchToProps = (dispatch, ownProps) => {
     return {
-      // backup if use other API
-      fetchData: (fetchAPI, params) => {
-        let url = composeRequest(fetchAPI, params)
-        dispatch(fetchAPIdata(
-          url, fetchParams))
-      },
       fetchByParams: (params) => {
         let url = composeRequest(API, params)
         dispatch(fetchAPIdata(

@@ -1,4 +1,4 @@
-import { viewGenerator } from '@/fetchGenerator'
+import { viewGenerator } from '@/utils/fetchGenerator'
 import { API_NEW_MOVIES } from '@/constants'
 import { pageName, moduleName } from '../constant'
 import detailsComponentGenerator from '@/Components/DetailsComponent'
