@@ -1,7 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { logger } from 'redux-logger'
-// import reduxLoading from './utils/redux-loading'
 import { cacheMiddleware } from './utils/redux-cache'
 
 // celebrity
