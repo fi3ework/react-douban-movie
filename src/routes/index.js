@@ -12,6 +12,7 @@ const chart = asyncComponent(() => import('@/routes/thunkRoutes'), 'ChartRoute')
 const cinema = asyncComponent(() => import('@/routes/thunkRoutes'), 'CinemaRoute')
 const search = asyncComponent(() => import('@/routes/thunkRoutes'), 'SearchRoute')
 const tag = asyncComponent(() => import('@/routes/thunkRoutes'), 'TagRoute')
+const notFound = asyncComponent(() => import('@/routes/thunkRoutes'), 'NotFoundRoute')
 
 const host = ''
 const Routes = () => (
@@ -26,8 +27,8 @@ const Routes = () => (
           <Route path={`/${host}cinema`} component={cinema} />
           <Route path={`/${host}search`} component={search} />
           <Route path={`/${host}tag`} component={tag} />
-          <Route path={`/${host}`} component={home} />
-          <Route path={`/*`} component={tag} />
+          <Route path={`/${host}`} exact component={home} />
+          <Route path={`/*`} component={notFound} />
         </Switch>
       </main>
       <Footer />

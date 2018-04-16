@@ -74,4 +74,14 @@ const TagRoute = ({ match, location }) => {
   )
 }
 
-export { NavBar, CelebrityRoute, ChartRoute, CinemaRoute, SearchRoute, TagRoute, SubjectRoute, NotFoundPage, Footer }
+const NotFoundRoute = ({ match, location }) => {
+  console.log('Tag route')
+  return (
+    <DocumentTitle title={'页面, 不存在的'}>
+      <NotFoundPage />
+    </DocumentTitle>
+  )
+}
+
+
+export { NavBar, CelebrityRoute, ChartRoute, CinemaRoute, SearchRoute, TagRoute, SubjectRoute, NotFoundRoute, Footer }
