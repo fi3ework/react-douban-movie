@@ -52,10 +52,8 @@ class SearchContent extends Component {
   }
 
   render() {
-    console.log(this.props)
     let query = this.props.params.query
     let SearchView = this.searchDataView
-    console.log(this.props.payload)
     return (
       <div className={style.content}>
         <div>

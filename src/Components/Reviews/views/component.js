@@ -116,7 +116,6 @@ class FoldReview extends Component {
   }
 
   toggle = () => {
-    console.log('toggle click')
     if (this.state.isFold) {
       this.setState((prevState, props) => ({
         isFold: !this.state.isFold

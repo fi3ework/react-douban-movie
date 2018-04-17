@@ -4,7 +4,7 @@ import { Input } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
 import style from './style.scss'
 import debounce from 'lodash/debounce'
-import { actionCreator } from '@/utils/fetchGenerator'
+import { actionCreator/* , viewGenerator */ } from '@/utils/fetchGenerator'
 import { API_SEARCH } from '@/constants'
 import { pageName } from '@/pages/SearchPage'
 import { moduleName } from '@/pages/SearchPage/content'
@@ -82,14 +82,12 @@ class SearchPreview extends Component {
 
 class NavBar extends Component {
   searchQuery = (value) => {
-    console.log(value)
     this.props.fetchQuery(value)
   }
 
   deboncedSearch = debounce(this.searchQuery, 300)
 
   render() {
-    console.log(this.props.searchPreview)
     return (
       <div>
         <div className={style.globalNavItems} >
@@ -139,6 +137,16 @@ class NavBar extends Component {
   }
 }
 
+// const connectedNavBar = viewGenerator(
+//   {
+//     pageName,
+//     moduleName,
+//     API: API_SEARCH,
+//     view: NavBar,
+//   }
+// )
+
+
 let mapStateToProps = (state, ownProps) => {
   return {
     searchPreview: state[pageName][moduleName]
@@ -149,9 +157,6 @@ let mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchQuery: (query) => {
       let queryURL = API_SEARCH.replace(/:query/, query)
-      console.log(queryURL)
-      console.log(pageName)
-      console.log(moduleName)
       let ac = actionCreator({ pageName, moduleName, URL: queryURL })
       ac(dispatch)
     }

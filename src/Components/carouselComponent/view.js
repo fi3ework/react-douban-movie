@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { Icon, Col, Row } from 'antd'
 import Slider from 'react-slick'
 import style from './style.scss'
+import PropTypes from 'prop-types'
+import { isObjectEmpty } from '@/utils/propDetect'
 
 // custom prev arrow
 const SamplePrevArrow = (props) => {
@@ -37,31 +39,49 @@ const IndexIndicator = ({ currIndex, total, className }) => {
 
 // slick wrapper
 class SliderWrapper extends PureComponent {
-  render() {
-    let { ItemView, itemViewPara, cols, payload, onClickPaginator } = this.props
-    let subjects
-    let isLoading = true
-    if (payload && payload.subjects) {
-      isLoading = false
+  static propTypes = {
+    payload: PropTypes.object,
+    cols: PropTypes.number.isRequired,
+    onClickPaginator: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {
+    payload: {}
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      settings: {
+        dots: false,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
+        beforeChange: (oldIndex, newIndex) => {
+          this.props.onClickPaginator(newIndex)
+        }
+      }
     }
+  }
+
+  render() {
+    let { cols, payload } = this.props
+    const isLoading = isObjectEmpty(payload)
+    let subjects
     // if data is still loading
     if (isLoading) {
     // push null to be placeholder
-      let defaultSubjects = []
-      for (let i = 0; i < cols; i++) {
-        defaultSubjects.push(null)
-      }
-      subjects = defaultSubjects
+      subjects = new Array(cols).fill(null)
     } else {
       subjects = payload.subjects
     }
 
     const carouselItems = []
     let colItems = subjects.map((subject, index) => {
-      const currCard = <ItemView {...itemViewPara} data={subject} />
+      const currCard = React.cloneElement(this.props.children, { data: subject })
       return <Col span={Math.floor(24 / cols)} key={index}>{currCard}</Col>
     })
 
+    // 将每个card按col分成几组，再push进数组
     for (let i = 0; i < colItems.length; i += cols) {
       carouselItems.push(colItems.slice(i, i + cols))
     }
@@ -72,17 +92,8 @@ class SliderWrapper extends PureComponent {
       </div>
     )
 
-    const settings = {
-      dots: false,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
-      beforeChange: (oldIndex, newIndex) => {
-        onClickPaginator(newIndex)
-      }
-    }
-
     return (
-      <Slider {...settings}>
+      <Slider {...this.state.settings}>
         {rows}
       </Slider>
     )
@@ -96,6 +107,16 @@ const viewGeneratror = ({
   cols = 5
 }) => {
   class MovieComponents extends PureComponent {
+    static propTypes = {
+      isLoading: PropTypes.bool.isRequired,
+      payload: PropTypes.object.isRequired
+    }
+
+    static defaultProps = {
+      isLoading: true,
+      payload: {}
+    }
+
     constructor(props) {
       super(props)
       this.state = {
@@ -110,13 +131,7 @@ const viewGeneratror = ({
     }
 
     render() {
-      let rows
-      if (this.props.payload) {
-        rows = Math.ceil(this.props.payload.subjects.length / cols)
-      } else {
-        rows = -1
-      }
-
+      const rows = this.props.isLoading ? -1 : Math.ceil(this.props.payload.subjects.length / cols)
       return (
         <div className={style.sliderWrapper}>
           <IndexIndicator
@@ -127,10 +142,10 @@ const viewGeneratror = ({
           <SliderWrapper
             payload={this.props.payload}
             cols={cols}
-            ItemView={ItemView}
-            itemViewPara={itemViewPara}
             onClickPaginator={this.onPageChange}
-          />
+          >
+            <ItemView {...itemViewPara} />
+          </SliderWrapper>
         </div>
       )
     }

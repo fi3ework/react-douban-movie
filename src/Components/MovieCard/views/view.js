@@ -8,6 +8,7 @@ import style from './style.scss'
 import HoverCard from './HoverCard'
 import ReactDOM from 'react-dom'
 import { getAbsPos } from '@/utils/getAbsPos'
+import PropTypes from 'prop-types'
 
 // 已上映的信息
 const pubbedInfo = (props) => {
@@ -74,6 +75,16 @@ const BuyButton = (props) =>
   </div>
 
 class MovieCard extends PureComponent {
+  static propTypes = {
+    hasBuyButton: PropTypes.bool.isRequired,
+    hasHoverInfo: PropTypes.bool.isRequired
+  }
+
+  static defaultProps = {
+    hasBuyButton: false,
+    hasHoverInfo: false
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -83,7 +94,6 @@ class MovieCard extends PureComponent {
   }
 
   onMouseEnterHandler = () => {
-    console.log('in')
     this.setState({
       cardPos: this.getCardPos(),
       doesShowHoverInfo: true
@@ -91,7 +101,6 @@ class MovieCard extends PureComponent {
   }
 
   onMouseLeaveHandler = () => {
-    console.log('out')
     this.setState({
       doesShowHoverInfo: false
     })

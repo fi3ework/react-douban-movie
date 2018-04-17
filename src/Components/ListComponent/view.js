@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Icon } from 'antd'
 import style from './style.scss'
 import Loading from '../Loading'
+import PropTypes from 'prop-types'
 
 const ListItem = ({ item, hasBox, hasDelta, hasNewLogo }) => {
   let { id, title: subjectTitle } = item.subject
@@ -56,21 +57,15 @@ const listComponentGenerator = ({
   hasNewLogo = false,
   hasBox = false,
 }) => {
-  let ListGenerator = (props) => {
-    let isLoading = true
-    if (props.payload && props.payload.subjects) {
-      isLoading = false
-    }
-
-    if (isLoading) {
+  const ListGenerator = (props) => {
+    if (props.isLoading) {
       return <Loading />
     }
 
-    let { subjects } = props.payload
     return (
       <div>
         {
-          subjects.map(item => {
+          props.payload.subjects.map(item => {
             return (
               <ListItem
                 item={item}
@@ -83,6 +78,16 @@ const listComponentGenerator = ({
         }
       </div>
     )
+  }
+
+  ListGenerator.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    payload: PropTypes.object.isRequired
+  }
+
+  ListGenerator.defaultProps = {
+    isLoading: true,
+    payload: {}
   }
   return ListGenerator
 }

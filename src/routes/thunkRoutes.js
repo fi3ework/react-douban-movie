@@ -15,7 +15,7 @@ import DocumentTitle from 'react-document-title'
 
 
 const SubjectRoute = ({ match }) => {
-  console.log('SubjectRoute')
+  console.log('Subject route')
   return (
     <Switch>
       <Route path={`${match.path}/:id`} exact component={MoviePage} />

@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './style.scss'
+import PropTypes from 'prop-types'
 
 const matrixMaker = (items, cols) => {
   let colArr = []
@@ -21,11 +22,10 @@ const matrixComponentGenerator = ({
   itemView: ItemView,
   cols = 5
 }) => {
-  let MovieComponents = (props) => {
+  const MovieComponents = (props) => {
     let subjects = []
     if (props.isLoading) {
-      // 默认 20 个 placeholder
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < props.placeHolderNum; i++) {
         subjects.push(null)
       }
     } else {
@@ -39,6 +39,19 @@ const matrixComponentGenerator = ({
 
     return matrixMaker(items, cols)
   }
+
+  MovieComponents.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    payload: PropTypes.object.isRequired,
+    placeHolderNum: PropTypes.number.isRequired
+  }
+
+  MovieComponents.defaultProps = {
+    isLoading: true,
+    placeHolderNum: 20,
+    payload: {}
+  }
+
   return MovieComponents
 }
 

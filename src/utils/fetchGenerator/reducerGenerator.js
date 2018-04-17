@@ -1,20 +1,5 @@
 import actionTypeGenerator from './actionTypeGenerator'
 
-/**
- * costomReducer should be like this:
- * {
- *   type:
- *   process: (state, action)=>{}
- * }
- * 
- * @param {any} {
- *   pageName,
- *   moduleName,
- *   initialState = { isLoading: true },
- *   ...customReducer
- * } 
- * @returns 
- */
 function reducerGenerator({
   pageName,
   moduleName,

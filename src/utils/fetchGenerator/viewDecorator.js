@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 // logic decorator
 const viewDecorator = WrappedComponent => {
+
   class ViewDecorator extends Component {
+    static propTypes = {
+      fetchByParams: PropTypes.func.isRequired,
+      params: PropTypes.object.isRequired
+    }
+
+    static defaultProps = {
+      params: {}
+    }
+
     constructor(props) {
       super(props)
-      // fetch data when init
+      // fetch data when construct
       this.props.fetchByParams(this.props.params)
     }
 
@@ -35,6 +46,7 @@ const viewDecorator = WrappedComponent => {
             {...this.props}
           />
           {
+            // render 'render props' if provided
             this.props.render ? this.props.render(this.props.payload) : null
           }
         </React.Fragment>

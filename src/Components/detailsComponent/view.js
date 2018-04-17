@@ -1,6 +1,7 @@
 import React from 'react'
 import Loading from '../Loading'
 import DetailCard from '../DetailCard'
+import PropTypes from 'prop-types'
 
 const detailsComponentGenerator = ({
   hasStar = true,
@@ -8,16 +9,8 @@ const detailsComponentGenerator = ({
   hasNewLogo = true
 }) => {
   let MovieComponents = (props) => {
-    let isLoading = true
-    if (props.payload && props.payload.subjects) {
-      isLoading = false
-    }
-
-    // placeholder
-    if (isLoading) {
-      return (
-        <Loading />
-      )
+    if (props.isLoading) {
+      return <Loading />
     }
 
     let subjects = props.payload.subjects
@@ -28,6 +21,17 @@ const detailsComponentGenerator = ({
       )
     })
   }
+
+  MovieComponents.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    payload: PropTypes.any.isRequired
+  }
+
+  MovieComponents.defaultProps = {
+    isLoading: true,
+    payload: {}
+  }
+
   return MovieComponents
 }
 

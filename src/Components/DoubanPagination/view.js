@@ -1,8 +1,19 @@
 import { Pagination } from 'antd'
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class DoubanPagination extends Component {
+  static propTypes = {
+    count: PropTypes.number.isRequired,
+    onChange: PropTypes.func
+  }
+
+  static defaultProps = {
+    count: 20,
+    onChange: () => { }
+  }
+
   constructor(props) {
     super(props)
     let { start, pageNumber, pageCount } = this.calcPaginatorParas(props.total)
@@ -19,16 +30,14 @@ class DoubanPagination extends Component {
   }
 
   onPaginationChange = (page) => {
-    let count = 20
     let { pathname, search } = this.props.location
-
     if (/start=\d*/.test(search)) {
-      search = search.replace(/start=(\d*)/, `start=${(page - 1) * count}`)
+      search = search.replace(/start=(\d*)/, `start=${(page - 1) * this.props.count}`)
     }
     else
     {
       search += !search ? '?' : '&'
-      search += `start=${(page - 1) * count}&count=${count}`
+      search += `start=${(page - 1) * this.props.count}&count=${this.props.count}`
     }
 
     this.props.history.push(pathname + search)
@@ -37,13 +46,12 @@ class DoubanPagination extends Component {
 
   calcPaginatorParas = (total) => {
     let start = 0
-    console.log(this.props.location)
     let regStart = /start=(\d*)/.exec(this.props.location.search)
     if (regStart && regStart[1] !== '') {
       start = regStart[1]
     }
-    let pageNumber = Math.floor(start / 20) + 1
-    let pageCount = Math.ceil(total / 20) * 10
+    let pageNumber = Math.floor(start / this.props.count) + 1
+    let pageCount = Math.ceil(total / this.props.count) * 10
     return { start, pageNumber, pageCount }
   }
 

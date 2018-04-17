@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Info from './Info'
 import MainPic from './MainPic'
 import RatePanel from './RatePanel'

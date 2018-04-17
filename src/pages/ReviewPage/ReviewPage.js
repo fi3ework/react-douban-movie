@@ -9,7 +9,6 @@ import DocumentTitle from 'react-document-title'
 
 const SubjectDocumentTitle = (payload) => {
   let title
-  console.log(payload)
   if (payload) {
     title = `${payload.subject.title}的影评 (${payload.total})`
   } else {
