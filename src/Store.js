@@ -1,6 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { logger } from 'redux-logger'
 import { cacheMiddleware } from './utils/redux-cache'
 
 // celebrity
@@ -64,7 +63,8 @@ const reducer = combineReducers({
 const middlewares = [thunkMiddleware, cacheMiddleware]
 
 if (process.env.NODE_ENV !== 'production') {
-  middlewares.push(logger)
+  const reduxLogger = require('redux-logger').logger
+  middlewares.push(reduxLogger)
 }
 
 const storeEnhancers = compose(
