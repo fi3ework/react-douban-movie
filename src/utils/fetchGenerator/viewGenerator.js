@@ -5,13 +5,13 @@ import actionCreator from './actionCreator'
 function generateViewWithFetch({
   pageName,
   moduleName,
-  params = {},
   API,
-  fetchParams,
+  fetchParams = {},
+  params = {},
   doesCache = false,
   view
 }) {
-  let fetchAPIdata = (URL, outerFetchParams) => {
+  const fetchData = (URL, outerFetchParams) => {
     return actionCreator({
       pageName,
       moduleName,
@@ -39,8 +39,8 @@ function generateViewWithFetch({
     return APItoFill + requestPara
   }
 
-  let mapStateToProps = (state, ownProps) => {
-    let currState = pageName ? state[pageName][moduleName] : state[moduleName]
+  const mapStateToProps = (state, ownProps) => {
+    const currState = pageName ? state[pageName][moduleName] : state[moduleName]
     return {
       API: API,
       isLoading: typeof currState.isLoading === 'undefined' ? true : currState.isLoading,
@@ -48,12 +48,11 @@ function generateViewWithFetch({
     }
   }
 
-  let mapDispatchToProps = (dispatch, ownProps) => {
+  const mapDispatchToProps = (dispatch, ownProps) => {
     return {
       fetchByParams: (params) => {
-        let url = composeRequest(API, params)
-        dispatch(fetchAPIdata(
-          url, fetchParams))
+        const url = composeRequest(API, params)
+        dispatch(fetchData(url, fetchParams))
       }
     }
   }

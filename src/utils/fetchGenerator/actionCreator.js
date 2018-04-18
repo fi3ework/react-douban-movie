@@ -7,13 +7,16 @@ function actionCreator({
   URL,
   fetchParams = {},
   doesCache = false,
-  extraActionProperty = {}
+  startProps = {},
+  successProps = {},
+  errorProps = {}
 }) {
   const ACTION_TYPES = actionTypeGenerator(pageName, moduleName)
   return (dispatch) => {
     dispatch({
       type: ACTION_TYPES.START,
-      isLoading: true
+      isLoading: true,
+      ...startProps
     })
 
     if (isCached(URL)) {
@@ -21,6 +24,7 @@ function actionCreator({
         type: ACTION_TYPES.SUCCESS,
         isLoading: false,
         payload: getCache(URL),
+        ...startProps
       })
     } else {
       fetch(URL, { params: fetchParams })
@@ -33,7 +37,7 @@ function actionCreator({
               type: ACTION_TYPES.SUCCESS,
               isLoading: false,
               payload: responseData,
-              ...extraActionProperty
+              ...successProps
             }
 
             if (doesCache) {
@@ -51,7 +55,8 @@ function actionCreator({
           dispatch({
             type: ACTION_TYPES.ERROR,
             isLoading: false,
-            error: error
+            error: error,
+            ...errorProps
           })
         })
     }

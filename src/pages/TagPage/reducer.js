@@ -1,4 +1,4 @@
-import { reducer as mainReducer, moduleName as mainModuleName } from './SearchResult'
+import { reducer as mainReducer, moduleName as mainModuleName } from './MovieList'
 import { combineReducers } from 'redux'
 import pageName from './constant'
 

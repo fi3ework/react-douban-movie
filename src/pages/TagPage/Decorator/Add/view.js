@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
+import pageName from '../../constant'
 import { connect } from 'react-redux'
 import { actionCreator } from '@/utils/fetchGenerator'
-import pageName from '../../constant'
-import { moduleName } from '../../SearchResult/constant'
+import { moduleName } from '../../MovieList/constant'
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
@@ -11,7 +11,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         pageName,
         moduleName,
         URL,
-        extraActionProperty: {
+        startProps: {
+          isLoading: false
+        },
+        successProps: {
           doesPushBack: true
         }
       })) }

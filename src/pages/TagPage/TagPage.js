@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { view as SearchView } from './SearchResult'
+import { view as SearchView } from './MovieList'
 import PresetTags from './PresetTag'
 
 class SearchPage extends Component {
