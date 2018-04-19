@@ -1,4 +1,7 @@
-const HOST = process.env.NODE_ENV === 'production' ? 'https://node-douban-api.herokuapp.com' : 'http://localhost:8081'
+// 使用Nginx代理
+// const HOST = process.env.NODE_ENV === 'production' ? '/proxy' : 'http://localhost:8081'
+// 使用node代理
+const HOST = process.env.NODE_ENV === 'production' ? 'http://118.24.21.99:8081' : 'http://localhost:8081'
 
 // 正在热映
 export const API_IN_THEATERS = `${HOST}/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b`

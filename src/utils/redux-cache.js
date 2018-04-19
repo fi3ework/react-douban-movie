@@ -7,6 +7,7 @@ const hasCachedKey = (cacheKey) => {
 const cacheMiddleware = store => next => action => {
   if (typeof action.cacheKey === 'undefined' ||
     typeof action.cacheValue === 'undefined') {
+    console.log(action)
     next(action)
     return
   }

@@ -27,7 +27,7 @@ function actionCreator({
         ...startProps
       })
     } else {
-      fetch(URL, { params: fetchParams })
+      fetch(URL)
         .then(response => {
           if (response.status !== 200) {
             throw new Error('Fail to get response with status:' + response.status)
