@@ -137,16 +137,6 @@ class NavBar extends Component {
   }
 }
 
-// const connectedNavBar = viewGenerator(
-//   {
-//     pageName,
-//     moduleName,
-//     API: API_SEARCH,
-//     view: NavBar,
-//   }
-// )
-
-
 let mapStateToProps = (state, ownProps) => {
   return {
     searchPreview: state[pageName][moduleName]

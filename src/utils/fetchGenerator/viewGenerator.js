@@ -21,7 +21,7 @@ function generateViewWithFetch({
     })
   }
 
-  const composeRequest = (inputAPI, inputParams = {}) => {
+  const composeURI = (inputAPI, inputParams = {}) => {
     let requestPara = ''
     let APItoFill = inputAPI.indexOf('?') >= 0 ? inputAPI : inputAPI + '?'
     Object.keys(inputParams).forEach((key) => {
@@ -51,7 +51,7 @@ function generateViewWithFetch({
   const mapDispatchToProps = (dispatch, ownProps) => {
     return {
       fetchByParams: (params) => {
-        const url = composeRequest(API, params)
+        const url = composeURI(API, params)
         dispatch(fetchData(url, fetchParams))
       }
     }
