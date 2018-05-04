@@ -8,7 +8,7 @@
 
 🛠 喜欢可以 star，也可自行 fork 修改
 
-📦 在线 demo 的服务器配置可能有些问题，可以本地 clone 下来完整浏览
+📦 ~~在线 demo 的服务器配置可能有些问题，可以本地 clone 下来完整浏览~~ demo 的服务器已开启 gzip
 
 ![preview](./doc/preview.gif)
 
