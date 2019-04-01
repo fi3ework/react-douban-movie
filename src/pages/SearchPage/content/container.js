@@ -60,8 +60,8 @@ class SearchContent extends Component {
           <SearchView
             params={{
               query: query,
-              start: this.state.start,
-              count: this.state.count
+              // start: this.state.start,
+              // count: this.state.count
             }}
           />
           {
