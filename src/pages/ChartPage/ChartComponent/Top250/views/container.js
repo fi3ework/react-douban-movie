@@ -25,7 +25,7 @@ const DataView = viewGenerator(
 const CommingSoonCarousel = () => (
   <div className="top250">
     <h2 className={style.title}>豆瓣电影TOP250</h2>
-    <DataView start={0} count={12} />
+    <DataView params={{ start: 0, count: 12 }} />
   </div>
 )
 

@@ -42,7 +42,8 @@ class ReivewsPage extends Component {
 
   getQueryFromLocation = (search, query) => {
     let regResult
-    let queryReg = /start=(\d*)/.exec(search)
+    let reg = new RegExp(`${query}=(\\d*)`)
+    let queryReg = reg.exec(search)
     if (queryReg && queryReg[1] !== '') {
       regResult = queryReg[1]
       return regResult
